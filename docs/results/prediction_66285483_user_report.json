@@ -1,0 +1,237 @@
+{
+  "evidence": "Full prediction.json pasted by the user from Unity. Graph identities and formulas checked locally against the preselected, hash-verified reference. Saved coordinate arrays have not been received or scored locally.",
+  "reported_date": "2026-10-29",
+  "prediction_job_id": "66285483",
+  "source_report": "predictions/example_66285483/prediction.json",
+  "report": {
+    "configuration": {
+      "spectrum_checkpoint": "runs/spectrum/checkpoints/best.ckpt",
+      "diffusion_checkpoint": "runs/diffusion/checkpoints/best.ckpt",
+      "peaks_json": null,
+      "data": "data/processed/squirl.npz",
+      "row": 24778,
+      "device": "cuda",
+      "output_dir": "predictions/example_66285483",
+      "beam_size": 5,
+      "conformers": 3,
+      "n_steps": 200,
+      "refine": true,
+      "refinement_iterations": 500,
+      "physics_guidance": 0.01,
+      "seed": 78438379
+    },
+    "graph_candidates": [
+      {
+        "selfies": "[C][=C][C][C][NH1][N][=C][C][=Ring1][Branch1][C][Ring1][=Branch2]",
+        "log_probability": -1.4829378016293049,
+        "smiles": "C1=CCc2[nH]ncc2C1",
+        "formula": "C7H8N2",
+        "graph_index": 0,
+        "conformers": [
+          {
+            "graph_index": 0,
+            "conformer_index": 0,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.033656030893325806,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 23.137667910030476
+          },
+          {
+            "graph_index": 0,
+            "conformer_index": 1,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.03365452215075493,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 23.13766790051674
+          },
+          {
+            "graph_index": 0,
+            "conformer_index": 2,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.033653393387794495,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 23.137667955313063
+          }
+        ]
+      },
+      {
+        "selfies": "[C][=C][C][C][=C][NH1][C][=C][Ring1][Branch1][C][Ring1][=Branch2]",
+        "log_probability": -1.5036152731627226,
+        "smiles": "C1=CCc2c[nH]cc2C1",
+        "formula": "C8H9N",
+        "graph_index": 1,
+        "conformers": [
+          {
+            "graph_index": 1,
+            "conformer_index": 0,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.03506134822964668,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 27.89729775217281
+          },
+          {
+            "graph_index": 1,
+            "conformer_index": 1,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.03506151959300041,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 27.897297773685025
+          },
+          {
+            "graph_index": 1,
+            "conformer_index": 2,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.03506164625287056,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 27.89729775211942
+          }
+        ]
+      },
+      {
+        "selfies": "[C][=C][C][C][=C][NH1][N][=C][Ring1][Branch1][C][Ring1][=Branch2]",
+        "log_probability": -2.6138174310326576,
+        "smiles": "C1=CCc2n[nH]cc2C1",
+        "formula": "C7H8N2",
+        "graph_index": 2,
+        "conformers": [
+          {
+            "graph_index": 2,
+            "conformer_index": 0,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.03414546325802803,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 34.25095366276308
+          },
+          {
+            "graph_index": 2,
+            "conformer_index": 1,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.034145258367061615,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 34.250953674654276
+          },
+          {
+            "graph_index": 2,
+            "conformer_index": 2,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.03414565324783325,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 34.25095366498883
+          }
+        ]
+      },
+      {
+        "selfies": "[C][=C][C][C][NH1][C][=C][C][=Ring1][Branch1][C][Ring1][=Branch2]",
+        "log_probability": -5.369049210101366,
+        "smiles": "C1=CCc2[nH]ccc2C1",
+        "formula": "C8H9N",
+        "graph_index": 3,
+        "conformers": [
+          {
+            "graph_index": 3,
+            "conformer_index": 0,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.031053313985466957,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 24.676846146663504
+          },
+          {
+            "graph_index": 3,
+            "conformer_index": 1,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.031053826212882996,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 24.6768461514858
+          },
+          {
+            "graph_index": 3,
+            "conformer_index": 2,
+            "geometry_screen_passed": true,
+            "bond_penalty": 0.03105362132191658,
+            "clash_penalty": 0,
+            "refinement_status": "converged",
+            "mmff_energy_kcal_mol": 24.676846148102587
+          }
+        ]
+      }
+    ],
+    "valid_graph_candidates": 4,
+    "status": "candidates_generated",
+    "ranking": "Graphs ordered by decoder sequence score; conformers are unranked. MMFF energies only compare conformers of the same graph.",
+    "limitations": [
+      "Geometry screens and MMFF are approximate physical checks, not quantum stability.",
+      "No forward IR calculation or spectral-match guarantee is implemented.",
+      "Ordinary achiral IR may not determine absolute stereochemistry; this pipeline reports achiral graph identities.",
+      "This recipe is restricted to neutral, closed-shell H/C/N/O/F molecules with at most 29 total atoms."
+    ]
+  },
+  "assessment": {
+    "input_row": 24778,
+    "reference_smiles": "C1=CCc2n[nH]cc2C1",
+    "requested_beam_size": 5,
+    "returned_valid_graph_candidates": 4,
+    "exact_matching_valid_candidate_ranks": [
+      3
+    ],
+    "exact_top1_identity_hit": false,
+    "exact_top5_identity_hit": true,
+    "total_conformers": 12,
+    "geometry_screen_passed_count": 12,
+    "mmff_converged_count": 12,
+    "candidates": [
+      {
+        "rank": 1,
+        "graph_index": 0,
+        "smiles": "C1=CCc2[nH]ncc2C1",
+        "formula": "C7H8N2",
+        "exact_reference_identity_match": false,
+        "conformers": 3,
+        "geometry_screen_passed_count": 3,
+        "mmff_converged_count": 3
+      },
+      {
+        "rank": 2,
+        "graph_index": 1,
+        "smiles": "C1=CCc2c[nH]cc2C1",
+        "formula": "C8H9N",
+        "exact_reference_identity_match": false,
+        "conformers": 3,
+        "geometry_screen_passed_count": 3,
+        "mmff_converged_count": 3
+      },
+      {
+        "rank": 3,
+        "graph_index": 2,
+        "smiles": "C1=CCc2n[nH]cc2C1",
+        "formula": "C7H8N2",
+        "exact_reference_identity_match": true,
+        "conformers": 3,
+        "geometry_screen_passed_count": 3,
+        "mmff_converged_count": 3
+      },
+      {
+        "rank": 4,
+        "graph_index": 3,
+        "smiles": "C1=CCc2[nH]ccc2C1",
+        "formula": "C8H9N",
+        "exact_reference_identity_match": false,
+        "conformers": 3,
+        "geometry_screen_passed_count": 3,
+        "mmff_converged_count": 3
+      }
+    ],
+    "reference_3d_rmsd": null,
+    "interpretation": "Exact identity recovered at valid candidate rank 3, but top-1 predicts the alternate tautomer. Target-aware selection is diagnostic; the deployed decoder ranking did not choose the correct tautomer first."
+  }
+}

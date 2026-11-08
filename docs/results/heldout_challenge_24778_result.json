@@ -1,0 +1,45 @@
+{
+  "evidence": "User screenshot followed by the complete pasted prediction.json from job 66285483. All returned graph identities and formulas were checked against the local reference; saved coordinate arrays have not been received.",
+  "reported_date": "2026-10-29",
+  "prediction_job_id": "66285483",
+  "input_row": 24778,
+  "split": "test",
+  "graph_candidate_index": 0,
+  "reference_smiles": "C1=CCc2n[nH]cc2C1",
+  "predicted_smiles_from_screenshot": "C1=CCc2[nH]ncc2C1",
+  "exact_nonisomeric_smiles_match": false,
+  "reference_formula": "C7H8N2",
+  "predicted_formula": "C7H8N2",
+  "formula_match": true,
+  "rdkit_tautomer_canonical_reference": "C1=CCc2[nH]ncc2C1",
+  "rdkit_tautomer_canonical_prediction": "C1=CCc2[nH]ncc2C1",
+  "tautomer_equivalent_under_rdkit": true,
+  "reference_tautomers_enumerated": 2,
+  "predicted_tautomer_seen_in_training": {
+    "row": 24770,
+    "smiles": "C1=CCc2[nH]ncc2C1"
+  },
+  "exact_reference_identity_absent_from_train_and_val": true,
+  "tautomer_family_absent_from_train_and_val": false,
+  "geometry_screen_from_screenshot": "PASS",
+  "refinement_status_from_screenshot": "converged",
+  "three_dimensional_reference_rmsd": null,
+  "exact_identity_in_other_beam_candidates": "Found: valid candidate rank 3 / graph_index 2 exactly matches the reference.",
+  "interpretation": "Candidate 1 recovers the formula and heavy-atom framework but moves the N-H proton to the other ring nitrogen. This is a strict exact-identity miss, although the forms canonicalize to the same RDKit tautomer family.",
+  "correction_to_novelty_claim": "The preselection used exact canonical identities and exact Murcko scaffold SMILES without tautomer normalization. Its exact-absence checks remain true, but the earlier description as an unseen ring framework was too strong: the alternate tautomer occurs in training. The exact test IR and exact target identity were held out.",
+  "follow_up": "Keep this result as the outcome of the preselected challenge. Check all five saved graph candidates. Before claiming unseen-framework performance on future examples, include tautomer-family and tautomer-normalized scaffold checks; do not silently replace this case.",
+  "full_prediction_report_assessment": {
+    "source_record": "docs/results/prediction_66285483_user_report.json",
+    "valid_graph_candidates": 4,
+    "exact_matching_candidate_ranks": [
+      3
+    ],
+    "exact_top1_identity_hit": false,
+    "exact_top5_identity_hit": true,
+    "conformers_returned": 12,
+    "geometry_screen_passed_count": 12,
+    "mmff_converged_count": 12,
+    "reference_3d_rmsd": null,
+    "note": "Correct candidate selected using the known reference for inspection; the decoder still ranks the alternate tautomer first. This case has training overlap at the tautomer-family level."
+  }
+}

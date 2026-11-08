@@ -1,0 +1,15 @@
+{
+  "data": "data/processed/squirl.npz",
+  "splits": "data/processed/splits.json",
+  "save_dir": "runs/spectrum_rank_finetune",
+  "batch_size": 64,
+  "epochs": 15,
+  "lr": 0.00002,
+  "ranking_weight": 0.1,
+  "ranking_margin": 0.1,
+  "label_smoothing": 0.05,
+  "precision": "32-true",
+  "num_workers": 0,
+  "ema_decay": 0.999,
+  "patience": 5
+}

@@ -1,0 +1,2 @@
+# Optional result pictures; install after training in the prediction environment.
+matplotlib==3.10.7

@@ -1,0 +1,10 @@
+# Install the CPU or CUDA torch 2.8.0 wheel first; see README.md.
+torch==2.8.0
+numpy==2.2.6
+pytorch-lightning==2.5.5
+tqdm==4.70.1
+torchmetrics==1.9.0
+networkx==3.6.1
+rdkit==2025.9.1
+selfies==2.2.0
+pytest==8.4.2

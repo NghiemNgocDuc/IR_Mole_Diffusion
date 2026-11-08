@@ -1,0 +1,19 @@
+{
+  "evidence": "User-supplied screenshot of Unity evaluation stdout; full report and checkpoint remain on Unity",
+  "reported_date": "2026-10-28",
+  "training_job_id": "66229326",
+  "training_elapsed": "03:01:40",
+  "evaluation_job_id": "66243541",
+  "checkpoint": "runs/spectrum/checkpoints/best.ckpt",
+  "report": "evaluation/spectrum_val.json",
+  "split": "val",
+  "selection": "First 500 entries in the fixed validation split",
+  "beam_size": 5,
+  "attempted_rows": 500,
+  "no_valid_candidate_fraction": 0.0,
+  "top1_identity_fraction": 0.706,
+  "topk_identity_fraction": 0.924,
+  "top1_formula_fraction": 0.93,
+  "identity_metric": "canonical non-isomeric SMILES; no ground-truth formula supplied",
+  "limitations": "Validation subset only; no stereochemical identity, full test-set, experimental IR, or 3D accuracy established"
+}

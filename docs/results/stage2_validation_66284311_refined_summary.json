@@ -1,0 +1,136 @@
+{
+  "evidence": "User-pasted Unity summary.json; trained checkpoint and sampled arrays remain on Unity and have not been independently rescored locally",
+  "reported_date": "2026-10-29",
+  "evaluation_job_id": "66284311",
+  "source_report": "evaluation/diffusion_val_refined/summary.json",
+  "transcription_note": "Removed a terminal line wrap inside the word ordinary so the pasted report is valid JSON; numerical values are unchanged.",
+  "comparison_checks": "Checkpoint/data hashes and all overlapping raw numerical metrics match the previously reported raw evaluation 66280988.",
+  "report": {
+    "schema_version": 1,
+    "configuration": {
+      "checkpoint": "runs/diffusion/checkpoints/best.ckpt",
+      "checkpoint_policy": "reject",
+      "data": "data/processed/squirl.npz",
+      "splits": "data/processed/splits.json",
+      "split": "val",
+      "output_dir": "evaluation/diffusion_val_refined",
+      "batch_size": 16,
+      "num_samples": 5,
+      "limit": 500,
+      "seed": 78438379,
+      "device": "cuda",
+      "sampler": "ddim",
+      "n_steps": 200,
+      "eta": 0,
+      "spectrum_control": "none",
+      "use_inference_graph": true,
+      "physics_guidance": 0,
+      "chemistry": true,
+      "refine": true,
+      "refine_iterations": 500,
+      "raw_weights": false
+    },
+    "ema_weights": true,
+    "evaluation_task": "coordinate generation with supplied atom counts and declared reference graph; not IR-only identification",
+    "data_sha256": "49c832a638c46a8420bd8a0187d18dfb757e9b9289cf4b4d9db0a3b3fbac71dd",
+    "checkpoint_sha256": "4400f46556d5b060de835843d5803b94a48940e728bcfb49cba97caa7a0a2160",
+    "split_manifest": "/home/dnghiem_umass_edu/diffusion/data/processed/splits.json",
+    "raw": {
+      "metric": "fixed_correspondence_proper_rotation_heavy_atom_RMSD_angstrom",
+      "rows": 500,
+      "candidates_per_row": 5,
+      "total_candidates": 2500,
+      "finite_candidates": 2500,
+      "finite_candidate_fraction": 1,
+      "all_hydrogen_rows_using_all_atoms": 0,
+      "mean_rmsd_finite_candidates": 0.8364191788601398,
+      "median_rmsd_finite_candidates": 0.8546824719127523,
+      "near_coincident_atom_fraction_all_candidates": 0.0012,
+      "near_coincident_threshold_angstrom": 0.2,
+      "max_centroid_norm_angstrom": 1.4483315169400157e-7,
+      "first_sample_rmsd_success_fraction": {
+        "0.5": 0.306,
+        "1.0": 0.612,
+        "2.0": 1
+      },
+      "best_of_k_rmsd_success_fraction": {
+        "0.5": 0.654,
+        "1.0": 0.964,
+        "2.0": 1
+      },
+      "interpretation": "RMSD uses supplied atom correspondence; graph identity, atom symmetry, stereochemistry, and chemical validity are unverified. The first sample is unranked.",
+      "chemistry": {
+        "backend": "RDKit distance/valence bond perception, neutral molecules",
+        "valid_connected_fraction_all_candidates": 0.9696,
+        "graph_and_geometry_assigned_stereo_match_fraction": 0.5088,
+        "first_unranked_graph_match_fraction": 0.53,
+        "any_graph_match_fraction_best_of_k": 0.922,
+        "symmetry_aware_heavy_atom_rmsd_first_sample_success": {
+          "0.5": 0.314,
+          "1.0": 0.486,
+          "2.0": 0.53
+        },
+        "symmetry_aware_heavy_atom_rmsd_best_of_k_success": {
+          "0.5": 0.692,
+          "1.0": 0.878,
+          "2.0": 0.922
+        },
+        "interpretation": "Valid means RDKit-sanitized and connected, not energetic stability. Stereo is derived from supplied reference 3D geometry; ordinary IR alone may not identify its handedness."
+      }
+    },
+    "refined": {
+      "metric": "fixed_correspondence_proper_rotation_heavy_atom_RMSD_angstrom",
+      "rows": 500,
+      "candidates_per_row": 5,
+      "total_candidates": 2500,
+      "finite_candidates": 2500,
+      "finite_candidate_fraction": 1,
+      "all_hydrogen_rows_using_all_atoms": 0,
+      "mean_rmsd_finite_candidates": 0.8412301014142995,
+      "median_rmsd_finite_candidates": 0.8826072928991167,
+      "near_coincident_atom_fraction_all_candidates": 0,
+      "near_coincident_threshold_angstrom": 0.2,
+      "max_centroid_norm_angstrom": 1.2759849710164417e-7,
+      "first_sample_rmsd_success_fraction": {
+        "0.5": 0.284,
+        "1.0": 0.612,
+        "2.0": 0.998
+      },
+      "best_of_k_rmsd_success_fraction": {
+        "0.5": 0.614,
+        "1.0": 0.946,
+        "2.0": 1
+      },
+      "interpretation": "RMSD uses supplied atom correspondence; graph identity, atom symmetry, stereochemistry, and chemical validity are unverified. The first sample is unranked.",
+      "refinement_status_counts": {
+        "converged": 2500
+      },
+      "method": "MMFF, graph available at inference; unsupported/nonconverged samples retain raw coordinates",
+      "chemistry": {
+        "backend": "RDKit distance/valence bond perception, neutral molecules",
+        "valid_connected_fraction_all_candidates": 1,
+        "graph_and_geometry_assigned_stereo_match_fraction": 0.522,
+        "first_unranked_graph_match_fraction": 0.534,
+        "any_graph_match_fraction_best_of_k": 0.924,
+        "symmetry_aware_heavy_atom_rmsd_first_sample_success": {
+          "0.5": 0.298,
+          "1.0": 0.488,
+          "2.0": 0.534
+        },
+        "symmetry_aware_heavy_atom_rmsd_best_of_k_success": {
+          "0.5": 0.662,
+          "1.0": 0.856,
+          "2.0": 0.924
+        },
+        "interpretation": "Valid means RDKit-sanitized and connected, not energetic stability. Stereo is derived from supplied reference 3D geometry; ordinary IR alone may not identify its handedness."
+      }
+    },
+    "ranking": null,
+    "sampling_failures": [],
+    "limitations": [
+      "No learned or quantum spectral ranking is implemented; first sample is unranked.",
+      "Finite coordinates and geometric RMSD alone do not establish chemical validity or physical stability.",
+      "Chemical identity is unverified unless --chemistry succeeds; geometry metrics do not exclude wrong graphs."
+    ]
+  }
+}

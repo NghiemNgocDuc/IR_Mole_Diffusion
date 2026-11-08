@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-10-04T15:21:28",
+  "model": "Transformer",
+  "mode": "ir",
+  "data_path": "./data/SQuIRL/squirl_ir_3d.npz",
+  "save_dir": "models_formula/squirl_v7/Transformer_ir_g3584_peak_mlp_pk81c2_ir_768x6",
+  "log_dir": "logs_formula/squirl_v7/Transformer_ir_g3584_peak_mlp_pk81c2_ir_768x6/version_1",
+  "v2_features": {
+    "encoder_type": "peak_mlp",
+    "peak_channels": 2,
+    "decoder_layers": null,
+    "label_smoothing": 0.0,
+    "use_gaussian_channel": false,
+    "ir_rep": "peaklist",
+    "nmr_rep": "grid",
+    "aug_freq_noise": false,
+    "aug_intensity_scale": false,
+    "aug_peak_drop_prob": 0.0,
+    "ms_use_precursor": false
+  },
+  "hparams": {
+    "batch_size": 128,
+    "max_epochs": 80,
+    "lr": 0.0001,
+    "weight_decay": 1e-05,
+    "hidden_dim": 768,
+    "layers": 6,
+    "heads": 8,
+    "precision": "bf16-mixed",
+    "seed": 78438379
+  },
+  "splits": {
+    "train": 107036,
+    "val": 13379,
+    "test": 13380
+  },
+  "metrics": {
+    "best_val_loss": 0.1023363471031189,
+    "runtime_sec": 51768.29689002037,
+    "peak_vram_mb": 6146.302734375
+  },
+  "checkpoints": {
+    "best": "/home/siqichen_umass_edu/Spectrum2Structure/models_formula/squirl_v7/Transformer_ir_g3584_peak_mlp_pk81c2_ir_768x6/best-epoch=033-val_loss=0.102336.ckpt"
+  },
+  "dataset_tag": "squirl_v7"
+}

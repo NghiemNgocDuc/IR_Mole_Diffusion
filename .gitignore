@@ -1,0 +1,35 @@
+# Local Python environments and disposable caches
+.runtime/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Large datasets and model weights; preserve the files locally
+data/**/*.npz
+data/processed/
+ckpt/
+*.ckpt
+*.pt
+*.pth
+
+# Generated experiments, reports, and upload archives
+lightning_logs/
+outputs/
+runs/
+evaluation/
+predictions/
+logs/
+
+# Build products and OS metadata
+build/
+dist/
+*.egg-info/
+.DS_Store
+Thumbs.db
+Desktop.ini

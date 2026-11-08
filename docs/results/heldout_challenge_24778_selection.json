@@ -1,0 +1,37 @@
+{
+  "selection_date": "2026-10-29",
+  "purpose": "Preselected harder held-out IR-only prediction challenge; no prediction outcome was consulted.",
+  "row": 24778,
+  "split": "test",
+  "heavy_atoms": 9,
+  "hetero_atoms": 2,
+  "rings": 2,
+  "multiple_bonds": 1,
+  "retained_peak_count": 41,
+  "identity_absent_from_train_and_val": true,
+  "murcko_scaffold_absent_from_train_and_val": true,
+  "exact_model_input_absent_from_train_and_val": true,
+  "seen_rows_checked": 112303,
+  "data_sha256": "49c832a638c46a8420bd8a0187d18dfb757e9b9289cf4b4d9db0a3b3fbac71dd",
+  "split_sha256": "9e46e1949dfcd88181a64691ba407bc4ab8ea5fa98e0b1f741b7bb69242c8d62",
+  "reference_identity_sha256": "b4c1b3f950b1e97a460df327509374c9daab8c21672018cc68469c0bca380988",
+  "scaffold_sha256": "b4c1b3f950b1e97a460df327509374c9daab8c21672018cc68469c0bca380988",
+  "packed_ir_sha256": "33e77c69186140e664d0d8f5eda620589c30534a045f78ebcde0586b5251b0a2",
+  "selection_rule": "First test-row index with 9 heavy atoms, at least 2 hetero atoms, at least 2 rings, at least 1 double/triple bond, and Murcko scaffold absent from train/validation. Structural complexity is a selection heuristic, not measured model difficulty.",
+  "input_export": "outputs/hard_test_24778_ir.json",
+  "unity_submission": "sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base,PREDICTION_ROW=24778 predict_example.sh",
+  "limitations": [
+    "Same supplied simulated dataset and supported chemical domain; not an independently acquired experimental IR spectrum.",
+    "Exact identity, exact model-input array, and exact RDKit Murcko scaffold were checked; chemical motifs or close analogues can still occur in training.",
+    "One challenge is illustrative and does not replace aggregate held-out test evaluation.",
+    "The actual trained prediction runs on Unity; no result is claimed before that run."
+  ],
+  "post_prediction_novelty_audit": {
+    "audited_after_job": "66285483",
+    "exact_reference_identity_absent_from_train_and_val": true,
+    "tautomer_family_absent_from_train_and_val": false,
+    "alternate_tautomer_in_training_row": 24770,
+    "correction": "The original exact Murcko-SMILES check did not normalize tautomers. The earlier unseen-ring-framework description was too strong; an alternate tautomer of the same heavy-atom framework occurs in training.",
+    "result_record": "docs/results/heldout_challenge_24778_result.json"
+  }
+}

@@ -10,9 +10,15 @@
 
 set -euo pipefail
 cd "${SLURM_SUBMIT_DIR:-$PWD}"
-: "${PILOT_OUTPUT:?Set PILOT_OUTPUT to the prepared spectrum pilot directory}"
-if [[ ! -f "$PILOT_OUTPUT/baseline_start.ckpt" || ! -f "$PILOT_OUTPUT/baseline.json" ]]; then
-  printf '%s\n' "PILOT_OUTPUT must contain baseline_start.ckpt and the completed baseline.json report." >&2
+compat_checkpoint="${COMPATIBILITY_CHECKPOINT:-}"
+compat_report="${COMPATIBILITY_REPORT:-}"
+if [[ -z "$compat_checkpoint" || -z "$compat_report" ]]; then
+  : "${PILOT_OUTPUT:?Set PILOT_OUTPUT to the prepared spectrum pilot directory, or set both COMPATIBILITY_CHECKPOINT and COMPATIBILITY_REPORT}"
+  compat_checkpoint="${compat_checkpoint:-$PILOT_OUTPUT/baseline_start.ckpt}"
+  compat_report="${compat_report:-$PILOT_OUTPUT/baseline.json}"
+fi
+if [[ ! -f "$compat_checkpoint" || ! -f "$compat_report" ]]; then
+  printf '%s\n' "Compatibility experiment requires readable COMPATIBILITY_CHECKPOINT and COMPATIBILITY_REPORT files." >&2
   exit 1
 fi
 
@@ -21,10 +27,10 @@ export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-4}"
 export MKL_NUM_THREADS="$OMP_NUM_THREADS"
 compatibility_output="${COMPATIBILITY_OUTPUT:-runs/compatibility_${SLURM_JOB_ID:-manual}}"
 
-printf 'Separate compatibility experiment; baseline: %s; fresh output: %s\n' "$PILOT_OUTPUT" "$compatibility_output"
+printf 'Separate compatibility experiment; checkpoint: %s; report: %s; fresh output: %s\n' "$compat_checkpoint" "$compat_report" "$compatibility_output"
 conda run -n "${CONDA_ENV:-base}" --no-capture-output python -u train_compatibility.py \
-  --checkpoint "$PILOT_OUTPUT/baseline_start.ckpt" \
-  --baseline_report "$PILOT_OUTPUT/baseline.json" \
+  --checkpoint "$compat_checkpoint" \
+  --baseline_report "$compat_report" \
   --data data/processed/squirl.npz \
   --splits data/processed/splits.json \
   --output_dir "$compatibility_output" \

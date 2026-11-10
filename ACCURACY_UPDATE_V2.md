@@ -2,7 +2,7 @@
 
 Use **unity_accuracy_update_v2.zip** for your existing Unity repository. It replaces the earlier pilot upload instructions. Your viewer, data and trained checkpoints are already present; this update supplies the new experiment code.
 
-Current measured result remains **64.0% Top1 and 89.7% Top5 on 1,000 validation molecules**. No improvement from this update has been measured on Unity yet.
+**Status update (2026-11-08).** The pilot completed and full validation over all 12,478 validation rows measured: CE fine-tuning 64.02% Top1 / 89.04% Top5, ranking fine-tuning 64.02% Top1 / **89.26% Top5**, versus the original baseline 62.91% / 89.10%. Both arms gained +1.11 points (paired 95% intervals +0.62 to +1.59 and +0.61 to +1.59); CE and ranking differ by 0.00 (299 gains / 299 losses, interval includes zero). The 1,000-molecule pilot subset is included in these numbers, and Top1 here measures molecular graph identity, not 3D or experimental-IR accuracy. See `outputs/full_validation_review_2026-11-08/` (local) and `evaluation/full_validation_66855524/full_validation_results.zip` on Unity, plus the error analysis in the review notes. The next bounded experiment applies the frozen IR–molecule compatibility head to the ranking model; see [the compatibility experiment](COMPATIBILITY_EXPERIMENT.md#ranking-base-variant-full-12478-molecule-validation). The historical upload instructions below remain for reference.
 
 ## Upload and run this first
 

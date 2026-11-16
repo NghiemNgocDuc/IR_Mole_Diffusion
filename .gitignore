@@ -25,6 +25,8 @@ runs/
 evaluation/
 predictions/
 logs/
+/*.zip
+/LigParGen-*.AppImage
 
 # Build products and OS metadata
 build/

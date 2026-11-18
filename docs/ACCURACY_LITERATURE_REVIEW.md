@@ -1,5 +1,11 @@
 # IR-to-structure accuracy: literature review and proposed experiments
 
+**2026-11-11 update:** the fine-tuning and selector experiments below have now
+been evaluated. See [Top1 research and the next experiment](TOP1_RESEARCH_AND_NEXT_EXPERIMENT.md)
+for the current evidence and recommendations. This file preserves the earlier
+research history; its old next-step instructions and baseline values are not the
+current outcome.
+
 **2026-11-06 implementation update:** [Accuracy update v2](../ACCURACY_UPDATE_V2.md)
 adds a preparation-only decoding comparison, model-generated alternatives from
 training inputs, three matched-budget training arms, and a separate optional

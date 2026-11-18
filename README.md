@@ -28,7 +28,9 @@ and training state. No external encoder file is needed when loading them.
 
 This is a research baseline. Local checks establish that the code learns, saves,
 resumes, and samples. Measured Unity graph accuracy and its scope are recorded in
-the [validation-subset baseline](docs/results/stage1_baseline_66782537.md).
+the [full-validation review](docs/results/full_validation_66915416.md), with the
+earlier [validation-subset baseline](docs/results/stage1_baseline_66782537.md)
+retained for comparison.
 See also [research decisions](docs/RESEARCH.md) and
 [implementation verification](docs/VALIDATION.md).
 

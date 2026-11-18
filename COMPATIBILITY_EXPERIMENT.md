@@ -1,5 +1,10 @@
 # Optional IR–molecule compatibility experiment
 
+**2026-11-10 result:** The ranking-base experiment completed as job 1361218.
+Top1 fell from 64.02% to 54.23%, with unchanged Top5 of 89.26%. Retain the ranking
+model; this helper is not selected for use. See the [verified outcome and analysis](docs/results/compatibility_1361218.md).
+The protocol below is retained to document the completed experiment.
+
 This separate experiment trains two small projection networks to associate IR features with molecular fingerprints. The original baseline EMA encoder stays frozen. Only training-split molecular labels enter the objective; duplicate canonical identities are treated as positives rather than incorrect alternatives.
 
 It then reranks the **exact existing baseline candidate pools** on the same validation subset. It cannot recover a molecule absent from those pools. Top1 and fixed Top5 can change; coverage across the full candidate pool cannot. Scores are experimental associations, not calculated IR spectra or calibrated probabilities. Accuracy gains are not guaranteed.
@@ -69,7 +74,7 @@ squeue -j NEW_JOB_ID
 tail -F logs/compatibility-NEW_JOB_ID.out logs/compatibility-NEW_JOB_ID.err
 ```
 
-The launcher verifies that the checkpoint, report, data, splits, vocabulary, and the encoder/model/data source hashes match the report before training; a mismatch stops the job early rather than reranking a different pool. `encoder.py`, `model.py`, and `data.py` must be unchanged on the machine that runs this job. Fingerprint construction and head training are CPU-light; the frozen encoder pass dominates GPU time. Expect roughly 15–45 minutes of GPU time on `gpu-highvram` (not measured; well under the 4-hour allocation limit), plus queue wait. Fingerprint construction for the ~99,825 training identities is single-threaded and its progress is not shown until feature caching begins.
+The Python runner verifies that the checkpoint, report, data, splits, vocabulary, and the encoder/model/data source hashes match before training; a mismatch stops the job early. `encoder.py`, `model.py`, and `data.py` must be unchanged on the machine that runs this job. Runtime for this full-validation experiment has not been measured. Four hours is the scheduler limit, not a runtime estimate or guarantee. Use the phase progress and ETA after feature caching starts; queue time is separate. Fingerprint construction for the 99,825 training identities happens before that progress display.
 
 After completion:
 
@@ -78,6 +83,6 @@ cat runs/compatibility_NEW_JOB_ID/RESULTS.md
 cat runs/compatibility_NEW_JOB_ID/compatibility_comparison.json
 ```
 
-Decision rule: `recommendation` is `promising_pending_broader_validation` only if the paired Top1 interval clears zero with nondecreasing Top5 (Top5 must remain 89.26%); otherwise keep the ranking order. A single seed decides nothing by itself; confirm with additional seeds or a development partition drawn from training data before any test-split evaluation. No weights are promoted automatically.
+The current code sets `recommendation` to `promising_pending_broader_validation` when Top1 increases and fixed Top5 does not decrease. That provisional flag does **not** require the confidence interval to exclude zero. Inspect `paired.top1_gain_ci_above_zero` and the reported interval separately. For this experiment, require a positive Top1 change with an interval above zero and unchanged Top5 before spending on seed confirmation; otherwise retain the ranking order. Even a positive interval remains exploratory, single-seed validation evidence. Because this run already covers full validation, the historical recommendation label does not mean that a new independent validation set is available. Confirm seed stability before fixing the method and evaluating the untouched test split. No weights are promoted automatically.
 
 Download `compatibility_predictions.json`, `compatibility_comparison.json`, `training_history.json`, `configuration.json`, and `RESULTS.md` for review; the head checkpoint stays on Unity. The compatibility score is an association signal, not a calculated IR spectrum or a calibrated probability.

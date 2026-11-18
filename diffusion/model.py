@@ -210,7 +210,8 @@ class EquivariantDiffusion3D_v4(PortableModule):
 
     @torch.no_grad()
     def sample(self, spectra, atom_types, num_atoms, n_steps=None, sampler="ddim", eta=0.0,
-               physics_guidance=0.0, guidance_start_frac=0.3, graph=None, generator=None):
+               physics_guidance=0.0, guidance_start_frac=0.3, graph=None, generator=None,
+               opls_guidance=None):
         if not 0 <= eta <= 1 or physics_guidance < 0 or not 0 <= guidance_start_frac <= 1:
             raise ValueError("Invalid DDIM eta or physics guidance.")
         steps = sampling_timesteps(self.n_timesteps, n_steps, sampler)
@@ -219,6 +220,10 @@ class EquivariantDiffusion3D_v4(PortableModule):
         mask = torch.arange(atom_types.shape[1], device=atom_types.device)[None] < num_atoms[:, None]
         if physics_guidance > 0 and graph is None:
             raise ValueError("Guidance requires a graph available at inference.")
+        if opls_guidance is not None:
+            if graph is None or physics_guidance != 0:
+                raise ValueError("OPLS guidance requires an explicit graph and physics_guidance=0.")
+            opls_guidance.validate(atom_types, num_atoms, graph)
         condition = self.condition(spectra)
         x = centered_randn_like(torch.zeros(*atom_types.shape, 3, device=atom_types.device), mask, generator)
         previous = None
@@ -226,6 +231,19 @@ class EquivariantDiffusion3D_v4(PortableModule):
             t = torch.full((len(x),), time, device=x.device, dtype=torch.long)
             epsilon = self._predict(x, atom_types, t, condition, mask, graph, previous)
             x0 = masked_center(self.predict_x0_from_noise(x, t, epsilon), mask)
+            if opls_guidance is not None:
+                physical_x0 = x0 * self.hparams.coordinate_scale
+                corrected = opls_guidance.correct(physical_x0, mask,
+                    alpha=float(self.alphas_cumprod[time]), timestep=time)
+                if corrected.shape != x0.shape or not torch.isfinite(corrected).all():
+                    raise FloatingPointError("Invalid OPLS correction.")
+                # Avoid roundoff changes on a gated/no-op call. The policy returns
+                # identical physical coordinates in that case.
+                if not torch.equal(corrected, physical_x0):
+                    x0 = masked_center(corrected / self.hparams.coordinate_scale, mask)
+                    if sampler == "ddim":
+                        alpha = self.alphas_cumprod[time]
+                        epsilon = masked_center((x - alpha.sqrt() * x0) / (1-alpha).sqrt(), mask)
             if sampler == "ddpm":
                 x = self.posterior_mean_coef1[time] * x0 + self.posterior_mean_coef2[time] * x
                 if time > 0:

@@ -2,6 +2,12 @@
 
 ## Current workflow
 
+- [Matcher training-task audit](../MATCHER_TRAINING_TASK_AUDIT.md): next runnable diagnostic; compare original training groups with generated four-choice groups on the same training molecules.
+- [Completed IR diagnostic and next decision](results/token_matcher_probe_1444546.md): verified spectrum dependence; difficult candidate comparisons remain the problem. Includes the proposed training-comparison study.
+- [Full-token matcher outcome](results/token_matcher_1426578.md): completed frozen/fine-tuned comparison; the small combined gain is inconclusive.
+- [Top1 research before the matcher trial](TOP1_RESEARCH_AND_NEXT_EXPERIMENT.md): paper/code review and the motivation for the now-completed experiment.
+- [Development-selected decoder corrections](../RESIDUAL_SELECTOR_EXPERIMENT.md): completed experiment; no reliable assessment improvement. Retain the existing decoder.
+- [Hard-negative selector pilot](../HARD_SELECTOR_EXPERIMENT.md): compare generated confusing alternatives with matched random negatives after the failed compatibility experiment.
 - [Accuracy update v2](../ACCURACY_UPDATE_V2.md): prepare decoding comparisons and training-only negative pairs before fine-tuning.
 - [Fine-tuning pilot](../FINETUNE_PILOT.md): run and compare the three controlled training variants, then review the results.
 - [Optional compatibility experiment](../COMPATIBILITY_EXPERIMENT.md): train a separate scorer for existing graph candidates.
@@ -14,6 +20,11 @@ individual releases; use the current workflow links above for the accuracy pilot
 
 ## Results, data, and research
 
+- [Top1 research, November 11](TOP1_RESEARCH_AND_NEXT_EXPERIMENT.md): primary papers, official matching-model code, fresh formula-filter diagnostics and a staged experimental plan.
+- [Residual selector outcome](results/residual_selector_1389118.md): epoch selection and early stopping reproduced; assessment gain was six correct answers, with an interval spanning zero.
+- [Hard-negative selector outcome](results/hard_selector_1361586.md): both selectors fit the training comparisons but lose validation accuracy; retain decoder ordering.
+- [Compatibility experiment outcome](results/compatibility_1361218.md): the helper reduced Top1 to 54.23%; retain the 64.02% ranking model. Verified per-row changes and next hypotheses.
+- [Completed full-validation review](results/full_validation_66915416.md): verified 12,478-row baseline/CE/ranking comparison, remaining errors, and the next controlled experiment.
 - [Measured stage 1 baseline](results/stage1_baseline_66782537.md): the recorded 1,000-row validation subset audit and its interpretation limits.
 - [Dataset and outcome audit](DATASET_AND_OUTCOME_AUDIT.md): dataset contents, split checks, supported domain, and outcome analysis.
 - [Accuracy literature review](ACCURACY_LITERATURE_REVIEW.md): research evidence and the motivation for the controlled experiments.

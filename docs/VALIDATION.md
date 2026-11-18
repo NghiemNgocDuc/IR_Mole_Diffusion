@@ -168,7 +168,7 @@ samples do not establish a performance comparison.
 - Held-out graph evaluation job 66243338 failed while importing Lightning:
   `ModuleNotFoundError: No module named 'tqdm'`. It did not load or modify the
   trained checkpoint. `tqdm==4.70.1` (the locally tested version) is now explicit
-  in requirements, and `eval_spectrum.sh` activates the training environment.
+  in requirements, and `evaluation/eval_spectrum.sh` activates the training environment.
   A subsequent system-Python install attempt hit the externally managed
   environment guard; selecting Conda's base Python explicitly with `conda run`
   allowed the user-only dependency install and import check to succeed.

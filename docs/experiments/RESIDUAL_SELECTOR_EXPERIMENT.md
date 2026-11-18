@@ -19,7 +19,7 @@ Upload `unity_residual_selector_update.zip` to **`~/diffusion`**, then run:
 cd ~/diffusion &&
 unzip -o unity_residual_selector_update.zip &&
 mkdir -p logs &&
-sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base train_residual_selector.sh
+sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base training/train_residual_selector.sh
 ```
 
 If the upload went into `~/diffusion/diffusion`, use
@@ -115,7 +115,7 @@ bounds achievable Top1; 90% is not promised.
 cd ~/diffusion &&
 sbatch --partition=gpu-highvram \
   --export=ALL,CONDA_ENV=base,RESIDUAL_OUTPUT=runs/residual_selector_JOB_ID,RESIDUAL_RESUME=1 \
-  train_residual_selector.sh
+  training/train_residual_selector.sh
 ```
 
 Use the old job's output directory. Matching interrupted runs restart this small

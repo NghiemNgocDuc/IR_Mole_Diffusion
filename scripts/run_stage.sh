@@ -13,5 +13,5 @@ EXTRA_ARGS=()
 if [[ -n "${RESUME_CHECKPOINT:-}" ]]; then
     EXTRA_ARGS+=(--resume_from_checkpoint "$RESUME_CHECKPOINT")
 fi
-srun python -u "train_${STAGE}.py" --config "configs/${STAGE}.json" \
+srun python -u "training/train_${STAGE}.py" --config "configs/${STAGE}.json" \
     --accelerator gpu "${EXTRA_ARGS[@]}" "$@"

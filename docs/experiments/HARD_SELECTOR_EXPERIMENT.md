@@ -24,7 +24,7 @@ The file browser should end in `/diffusion`, not `/diffusion/diffusion`.
 cd ~/diffusion &&
 unzip -o unity_hard_selector_update.zip &&
 mkdir -p logs &&
-sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base train_hard_selector.sh
+sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base training/train_hard_selector.sh
 ```
 
 If you uploaded into the inner package folder again, the unzip line is instead:
@@ -102,7 +102,7 @@ same output directory, arguments, inputs, sources, and package versions:
 cd ~/diffusion &&
 sbatch --partition=gpu-highvram \
   --export=ALL,CONDA_ENV=base,SELECTOR_OUTPUT=runs/hard_selector_JOB_ID,SELECTOR_RESUME=1 \
-  train_hard_selector.sh
+  training/train_hard_selector.sh
 ```
 
 Use the **old** job's output directory. Resume reuses verified candidate generation

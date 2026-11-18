@@ -9,8 +9,8 @@ from diffusion.data import file_sha256
 from diffusion.residual_selector import (ResidualSelector, CandidateBatch, decoder_scores, targets_for,
     partition_validation, corrections, measure, ordered_candidates, fit_with_development)
 import diffusion.residual_selector as residual
-import train_residual_selector as runner
-from train_hard_selector import main as run_mining
+import training.train_residual_selector as runner
+from training.train_hard_selector import main as run_mining
 
 
 def candidate(smiles='C', logp=-1.):

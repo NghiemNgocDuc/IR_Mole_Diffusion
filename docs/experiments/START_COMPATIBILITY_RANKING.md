@@ -6,7 +6,7 @@ candidate pools (64.02% Top1; 89.26% Top5) and trains a separate compatibility
 head on training data. It does not retrain or overwrite the molecular generator.
 
 Upload `unity_compatibility_fullval_update.zip` to **`~/diffusion/`**, the outer
-project directory containing `train_compatibility.py`. Then run:
+project directory containing `training/train_compatibility.py`. Then run:
 
 ```bash
 cd ~/diffusion &&
@@ -14,7 +14,7 @@ unzip -o unity_compatibility_fullval_update.zip &&
 mkdir -p logs &&
 sbatch --partition=gpu-highvram \
   --export=ALL,CONDA_ENV=base,COMPATIBILITY_CHECKPOINT=runs/spectrum_pilot_66855524/ranking_attempt_1/checkpoints/last.ckpt,COMPATIBILITY_REPORT=evaluation/full_validation_66855524/ranking.json \
-  train_compatibility.sh
+  training/train_compatibility.sh
 ```
 
 If the archive was uploaded inside `~/diffusion/diffusion/`, use

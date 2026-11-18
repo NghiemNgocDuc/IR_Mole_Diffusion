@@ -139,7 +139,7 @@ not settings established by those papers for this model.
    settings in reports and retain legacy results.
 
 2. **Separate search width from reported Top-K.**
-   `evaluate_spectrum.py` currently evaluates all retained valid candidates as
+   `evaluation/evaluate_spectrum.py` currently evaluates all retained valid candidates as
    Top-K; increasing beam width therefore changes the metric. Always report
    Top-1 and Top-5, even with search width 10 or 20. Also report Top-10 where
    applicable, validity, and number of distinct identities. Canonicalize and

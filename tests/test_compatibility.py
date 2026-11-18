@@ -14,8 +14,8 @@ from diffusion.compatibility import (CompatibilityHead, cache_spectrum_features,
 from diffusion.data import file_sha256
 from diffusion.encoder import SpectrumTokenEncoder
 from diffusion.spectrum import SpectrumStructureModel
-from evaluate_spectrum import main as evaluate
-from train_compatibility import main
+from evaluation.evaluate_spectrum import main as evaluate
+from training.train_compatibility import main
 
 
 @pytest.fixture(autouse=True)

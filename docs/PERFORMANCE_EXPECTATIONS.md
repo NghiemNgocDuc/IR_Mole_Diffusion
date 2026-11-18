@@ -87,9 +87,9 @@ lists A100/H100/L40S devices under `gpu-highvram`; `gpu` includes older cards.
 The supplied jobs default to `gpu`. Override it when requesting modern devices:
 
 ```bash
-sbatch --partition=gpu-highvram train_spectrum.sh
+sbatch --partition=gpu-highvram training/train_spectrum.sh
 # After stage 1 is trained and evaluated:
-sbatch --partition=gpu-highvram train_diffusion.sh
+sbatch --partition=gpu-highvram training/train_diffusion.sh
 ```
 
 ## Replace assumptions with an allocated-GPU measurement

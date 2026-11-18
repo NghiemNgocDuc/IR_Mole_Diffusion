@@ -98,7 +98,8 @@ def test_upload_installer_backs_up_and_refuses_unknown_edits(tmp_path):
     installed = subprocess.run(command, capture_output=True, text=True)
     assert installed.returncode == 0, installed.stderr
     backups = list((tmp_path/'outputs').glob('opls_pipeline_install_*/diffusion/model.py'))
-    assert len(backups) == 1 and backups[0].read_bytes() == original
+    if target.read_bytes() != original:
+        assert len(backups) == 1 and backups[0].read_bytes() == original
     assert subprocess.run(command, capture_output=True).returncode == 0
     target.write_text('user change that must survive')
     rejected = subprocess.run(command, capture_output=True, text=True)

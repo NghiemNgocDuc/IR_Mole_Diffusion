@@ -9,7 +9,7 @@ FILES = ('diffusion/opls_backend.py', 'diffusion/graph_identity.py',
          'scripts/diagnose_opls_benchmark.py', 'scripts/compare_opls_engines.py',
          'scripts/validate_opls_physics.py', 'run_physical_validation.sh',
          'run_physics_dft.sh', 'collect_physics_validation.sh',
-         'tests/test_physical_validation.py', 'PHYSICAL_VALIDATION_PILOT.md')
+         'tests/test_physical_validation.py', 'docs/experiments/PHYSICAL_VALIDATION_PILOT.md')
 
 
 def main():

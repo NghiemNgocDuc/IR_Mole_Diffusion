@@ -5,14 +5,14 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
-FILES = ('diffusion/residual_selector.py', 'train_residual_selector.py', 'train_residual_selector.sh',
-         'RESIDUAL_SELECTOR_EXPERIMENT.md', 'tests/test_residual_selector.py',
+FILES = ('diffusion/residual_selector.py', 'training/train_residual_selector.py', 'training/train_residual_selector.sh',
+         'docs/experiments/RESIDUAL_SELECTOR_EXPERIMENT.md', 'tests/test_residual_selector.py',
          'tests/test_residual_launcher.py', 'scripts/package_residual_selector.py')
 
 
 def main():
     payload = {name: (ROOT / name).read_bytes() for name in FILES}
-    if b'\r' in payload['train_residual_selector.sh']:
+    if b'\r' in payload['training/train_residual_selector.sh']:
         raise ValueError('Launcher requires Unix LF line endings.')
     manifest = {'schema_version': 1, 'purpose': 'Development-selected bounded decoder-score corrections',
         'sha256': {name: hashlib.sha256(data).hexdigest() for name, data in payload.items()},

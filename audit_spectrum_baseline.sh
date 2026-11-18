@@ -36,7 +36,7 @@ echo "Selection: $audit_selection; requested limit: $audit_limit; seed: $audit_s
 echo "Model weights are read-only. This job evaluates the existing stage-1 checkpoint."
 "${conda_runner[@]}" python -c "import torch; assert torch.cuda.is_available(), 'CUDA unavailable in the selected environment'; print('GPU:', torch.cuda.get_device_name(0), flush=True)"
 
-"${conda_runner[@]}" python -u evaluate_spectrum.py \
+"${conda_runner[@]}" python -u evaluation/evaluate_spectrum.py \
     --checkpoint "$audit_checkpoint" --device cuda \
     --data "$audit_data" --splits "$audit_splits" --split val \
     --selection "$audit_selection" --limit "$audit_limit" --seed "$audit_seed" \

@@ -17,6 +17,6 @@ conda activate "${CONDA_ENV:-ir-diffusion}"
 export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-4}"
 export PYTHONUNBUFFERED=1
 python -c "import sys, torch, tqdm, pytorch_lightning; print('Python:', sys.executable, 'PyTorch:', torch.__version__, 'tqdm:', tqdm.__version__)"
-srun python -u evaluate_spectrum.py --checkpoint runs/spectrum/checkpoints/best.ckpt \
+srun python -u evaluation/evaluate_spectrum.py --checkpoint runs/spectrum/checkpoints/best.ckpt \
     --device cuda --split val --limit 500 --beam_size 5 \
     --output evaluation/spectrum_val.json "$@"

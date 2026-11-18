@@ -19,7 +19,7 @@ from diffusion.progress import EvaluationProgress
 from diffusion.ranking import canonical_identity, encode_negative, load_negative_rows, load_negative_tokens
 from diffusion.spectrum import SpectrumStructureModel
 from diffusion.spectrum_audit import _same_json, atomic_json, exclusive_report, select_rows
-from evaluate_spectrum import valid_candidates
+from evaluation.evaluate_spectrum import valid_candidates
 
 
 def choose_negative(candidates, reference, vocabulary, width):
@@ -106,7 +106,7 @@ def _provenance(args, data, manifest, model, checkpoint_hash, split_hash, fallba
         "versions": {"torch": str(torch.__version__), "numpy": np.__version__,
                      "rdkit": rdBase.rdkitVersion, "selfies": selfies.__version__},
         "source_sha256": {name: file_sha256(root / name) for name in (
-            "mine_ranking.py", "diffusion/ranking.py", "evaluate_spectrum.py", "diffusion/spectrum.py",
+            "mine_ranking.py", "diffusion/ranking.py", "evaluation/evaluate_spectrum.py", "diffusion/spectrum.py",
             "diffusion/encoder.py", "diffusion/model.py", "diffusion/data.py")}}
 
 
@@ -238,7 +238,7 @@ def main(argv=None):
     parser.add_argument("--checkpoint", required=True)
     parser.add_argument("--data", default="data/processed/squirl.npz")
     parser.add_argument("--splits", default="data/processed/splits.json")
-    parser.add_argument("--fallback", required=True, help="Verified prepare_ranking.py training-only archive")
+    parser.add_argument("--fallback", required=True, help="Verified preparation/prepare_ranking.py training-only archive")
     parser.add_argument("--output", required=True)
     parser.add_argument("--limit", type=int, default=5000, help="Seeded training-input budget; all other rows retain static negatives")
     parser.add_argument("--seed", type=int, default=78438379)

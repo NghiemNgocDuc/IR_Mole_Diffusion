@@ -60,7 +60,7 @@ for arm, (path, expected) in models.items():
 with exclusive_report(output / "full_validation.json"):
     for arm, (path, expected) in models.items():
         print(f"FULL VALIDATION: {arm}; {count} validation molecules; legacy beam 5; EMA", flush=True)
-        subprocess.run([sys.executable, "-u", "evaluate_spectrum.py",
+        subprocess.run([sys.executable, "-u", "evaluation/evaluate_spectrum.py",
             "--checkpoint", str(path), "--data", str(data), "--splits", str(splits),
             "--split", "val", "--selection", "all", "--limit", str(count),
             "--seed", "20261105", "--beam_size", "5", "--score_mode", "legacy",

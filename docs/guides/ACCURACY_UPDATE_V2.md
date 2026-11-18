@@ -12,7 +12,7 @@ Upload the ZIP into `~/diffusion`, then run:
 cd ~/diffusion &&
 unzip -o unity_accuracy_update_v2.zip &&
 mkdir -p logs &&
-sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base prepare_spectrum_pilot.sh
+sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base preparation/prepare_spectrum_pilot.sh
 ```
 
 This job **stops before fine-tuning**. It:
@@ -54,7 +54,7 @@ Reuse verified completed work by submitting the same directory:
 ```bash
 sbatch --partition=gpu-highvram \
   --export=ALL,CONDA_ENV=base,PILOT_OUTPUT=runs/spectrum_pilot_PREP_JOB_ID \
-  prepare_spectrum_pilot.sh
+  preparation/prepare_spectrum_pilot.sh
 ```
 
 Changed code, settings, inputs or library versions require a fresh output directory. Keep the same update installed throughout preparation and training. Do not run multiple jobs against the same pilot directory at once.

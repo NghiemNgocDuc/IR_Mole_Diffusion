@@ -53,7 +53,7 @@ examples measure different things; keep their scope explicit when reporting them
 | `.runtime/` | Local Windows Python environment; excluded from Unity uploads. |
 | `runs/`, `outputs/`, `evaluation/`, `predictions/`, `logs/` | Generated experiments, deliverables, reports, and logs; some directories exist only after a run. |
 
-The compatibility wrappers include `train_diffusion_v2.py`, `inference_v2.py`,
+The compatibility wrappers include `training/train_diffusion_v2.py`, `inference_v2.py`,
 and `dataset_utils_qmugs_v2.py`; their small size does not make them redundant.
 
 Experiment provenance records source, configuration, input, and library-version

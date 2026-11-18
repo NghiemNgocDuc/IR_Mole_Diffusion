@@ -33,7 +33,7 @@ TypeError: EquivariantDenoiser.__init__() got an unexpected keyword argument 'us
 TypeError: EquivariantDenoiser.forward() got an unexpected keyword argument 'bond_adj'
 ```
 
-This affects the workflow selected by `train_diffusion.sh` and `eval_diffusion.sh`. Disabling the bond-graph flag alone does not fix it: the wrapper still passes the unsupported keyword arguments.
+This affects the workflow selected by `training/train_diffusion.sh` and `evaluation/eval_diffusion.sh`. Disabling the bond-graph flag alone does not fix it: the wrapper still passes the unsupported keyword arguments.
 
 Good news: the diffusion checkpoint's denoiser keys and tensor shapes exactly match the current denoiser when explicitly configured with `cond_dim=768`, `hidden_dim=512`, `n_layers=8`, `graph_conditioning=True`, and `readout='residual'`. This establishes structural compatibility only; it does not establish identical numerical behavior.
 
@@ -77,7 +77,7 @@ Checkpoint physics buffers also use the old `bond_mean`, `bond_std`, and `bond_m
 
 ### 5. The newer native workflow is only partially integrated
 
-Locations: [train_diffusion.py](../../train_diffusion.py), [evaluate_diffusion.py](../../evaluate_diffusion.py), [diffusion/model.py](../../diffusion/model.py), [diffusion/data.py](../../diffusion/data.py).
+Locations: [training/train_diffusion.py](../../training/train_diffusion.py), [evaluation/evaluate_diffusion.py](../../evaluation/evaluate_diffusion.py), [diffusion/model.py](../../diffusion/model.py), [diffusion/data.py](../../diffusion/data.py).
 
 - The trainer passes `chirality_weight`, `conditioning_mode`, `readout`, `graph_conditioning`, and optionally `encoder_spec`; `diffusion/model.py` does not accept these options. The `encoder_spec` constructor smoke check fails with `TypeError`.
 - The model still imports missing `src.models_with_formula_acc_v2` / `src.models_with_formula_acc`. Direct construction reproduces `ModuleNotFoundError: No module named 'src'`. The available package is `src_v2`.
@@ -91,14 +91,14 @@ Locations: [train_diffusion.py](../../train_diffusion.py), [evaluate_diffusion.p
 
 The bundled `.runtime` has NumPy, CPU PyTorch, Lightning, and pytest, but lacks **SciPy, RDKit, and SELFIES**.
 
-Both `train_diffusion_v2.py --help` and `inference_v2.py --help` currently fail at import with `ModuleNotFoundError: No module named 'scipy'`. RDKit is required by SMILES-to-bond conversion; SELFIES is required for predicted SELFIES decoding. The latter currently catches import/decoding errors and returns an empty string, potentially hiding graph-generation failure.
+Both `training/train_diffusion_v2.py --help` and `inference_v2.py --help` currently fail at import with `ModuleNotFoundError: No module named 'scipy'`. RDKit is required by SMILES-to-bond conversion; SELFIES is required for predicted SELFIES decoding. The latter currently catches import/decoding errors and returns an empty string, potentially hiding graph-generation failure.
 
 There is no `requirements.txt`, `pyproject.toml`, conda environment file, or README explaining a supported setup. The shell scripts assume a Linux SLURM cluster, `module load conda/latest`, and an environment named `ir`; that environment is not supplied. No CUDA device is available in the bundled local runtime. SLURM log output paths also require the `logs` directory to exist before submitting a job.
 
 ## Additional correctness and reproducibility gaps
 
 1. **Incorrect RMSD rotation in legacy inference.** `inference_v2.py::_kabsch_align` calculates a column-vector rotation and applies it to row vectors without transposing it. On a four-atom structure transformed by a pure rotation and translation, it reports approximately **1.93649 Å**, while `diffusion.evaluation.kabsch_rmsd` reports approximately **7.9e-16 Å**. Repair this before interpreting legacy evaluation metrics.
-2. **No held-out selection in the legacy evaluator.** `inference_v2.py` evaluates the first N rows of the full dataset. `train_diffusion_v2.py` makes a 90/10 random train/validation split and saves no row manifest or test split. The encoder summary reports an 80/10/10 split, but only counts are present. Obtain the original row IDs/manifests and dataset fingerprint to establish which rows are unseen by both encoder and diffusion model. Exact SMILES uniqueness does not establish absence of canonical or cross-stage overlap.
+2. **No held-out selection in the legacy evaluator.** `inference_v2.py` evaluates the first N rows of the full dataset. `training/train_diffusion_v2.py` makes a 90/10 random train/validation split and saves no row manifest or test split. The encoder summary reports an 80/10/10 split, but only counts are present. Obtain the original row IDs/manifests and dataset fingerprint to establish which rows are unseen by both encoder and diffusion model. Exact SMILES uniqueness does not establish absence of canonical or cross-stage overlap.
 3. **SELFIES training loader expects the wrong type.** SQuIRL `decoderin` and `decoderout` contain strings, such as `[START][C]` and `[C][STOP]`. `_selfies_item()` casts these directly to integer arrays and fails. Tokenization and padding are missing for `mode='selfies'`; ordinary diffusion-mode loading does not use this branch.
 4. **Greedy decoder omits token protocol.** `predict_selfies_greedy()` initializes with token zero (`[nop]`) instead of the vocabulary's `[START]` token, and does not stop at/remove `[STOP]`. The 75-token vocabulary has START=55 and STOP=56. Decoding needs to match the training convention.
 5. **Vocabulary mapping needs provenance.** The checkpoint declares 75 classes, matching the size of `data/symbol_to_idx.json`. The SQuIRL-specific mapping has 33 classes and different token IDs, so it is not interchangeable. Checkpoint metadata does not include the token mapping; obtain confirmation of the exact mapping used in training.

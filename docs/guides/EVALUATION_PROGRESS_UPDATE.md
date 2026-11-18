@@ -16,7 +16,7 @@ The update contains only the evaluation CLI, metric progress callbacks, a small
 progress logger, and this guide. It contains no model, checkpoint, dataset, or
 new dependency, and preserves sampling and metric calculations.
 
-Submit evaluations with the same `eval_diffusion.sh` command as before.
+Submit evaluations with the same `evaluation/eval_diffusion.sh` command as before.
 Progress is enabled by default. Logs show a newline-based bar, counts, elapsed
 time, and an estimated remaining time **for the current phase**. Phases include
 sampling, raw geometry/chemistry, MMFF refinement if requested, refined metrics,

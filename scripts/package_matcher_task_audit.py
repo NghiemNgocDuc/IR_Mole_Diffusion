@@ -6,7 +6,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = ('audit_matcher_training_tasks.py', 'audit_matcher_training_tasks.sh',
-    'diffusion/matcher_task_audit.py', 'MATCHER_TRAINING_TASK_AUDIT.md',
+    'diffusion/matcher_task_audit.py', 'docs/experiments/MATCHER_TRAINING_TASK_AUDIT.md',
     'tests/test_matcher_task_audit.py', 'tests/test_matcher_task_audit_launcher.py',
     'scripts/package_matcher_task_audit.py', 'docs/results/token_matcher_probe_1444546.md')
 

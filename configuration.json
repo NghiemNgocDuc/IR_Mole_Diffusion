@@ -72,7 +72,7 @@
       "selfies": "2.1.1"
     },
     "source_sha256": {
-      "evaluate_spectrum.py": "72169bede95aa8f0e3d59fac18227b8738e987db253976e7814f97cbc55c3f8c",
+      "evaluation/evaluate_spectrum.py": "72169bede95aa8f0e3d59fac18227b8738e987db253976e7814f97cbc55c3f8c",
       "diffusion/spectrum_audit.py": "c0fc10193e43d608f86320d85ee0fc49a2b4283c840b2c151c25a2f434182c94",
       "diffusion/spectrum.py": "1834e03c876679be767a795025a8ece9909248553e8e451026f8493afa9066f3",
       "diffusion/encoder.py": "ea89459f87866ac0f49acc79a6148d3c1e8551bbac4cd20df2df58f2f5b743e5",
@@ -112415,7 +112415,7 @@
     "diffusion/spectrum.py": "1834e03c876679be767a795025a8ece9909248553e8e451026f8493afa9066f3",
     "diffusion/spectrum_audit.py": "c0fc10193e43d608f86320d85ee0fc49a2b4283c840b2c151c25a2f434182c94",
     "scripts/compare_spectrum_pilot.py": "9c7bfee4458b6146f1813b680729f417ed64a0ca0edfb65bf3ea842f5be9c950",
-    "train_compatibility.py": "0b45dc5c795699fbf4418407cf28cd040c8e5e2dd3f131d94995815bc1d410bb"
+    "training/train_compatibility.py": "0b45dc5c795699fbf4418407cf28cd040c8e5e2dd3f131d94995815bc1d410bb"
   },
   "diagnostic": false,
   "versions": {

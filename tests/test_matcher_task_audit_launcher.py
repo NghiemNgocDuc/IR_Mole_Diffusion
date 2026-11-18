@@ -60,4 +60,4 @@ def test_package_additions_hashes_and_lf(tmp_path, monkeypatch):
             assert hashlib.sha256(z.read(name)).hexdigest() == digest
         assert b'\r' not in z.read('audit_matcher_training_tasks.sh')
         assert not any(n.endswith(('.pt', '.ckpt', '.npz', '.npy')) for n in z.namelist())
-        assert 'train_token_matcher.py' not in z.namelist()
+        assert 'training/train_token_matcher.py' not in z.namelist()

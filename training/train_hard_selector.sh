@@ -20,7 +20,7 @@ export MKL_NUM_THREADS="$OMP_NUM_THREADS"
 resume_args=()
 if [[ "${SELECTOR_RESUME:-0}" == "1" ]]; then resume_args=(--resume); fi
 printf 'Output: %s\nMining 5,000 training inputs; then two matched selector arms. Four hours is a job limit, not an ETA.\n' "$output"
-conda run -n "${CONDA_ENV:-base}" --no-capture-output python -u train_hard_selector.py \
+conda run -n "${CONDA_ENV:-base}" --no-capture-output python -u training/train_hard_selector.py \
   --checkpoint "$checkpoint" --baseline_report "$report" --output_dir "$output" \
   --data data/processed/squirl.npz --splits data/processed/splits.json \
   --device cuda --limit 5000 --epochs 20 --batch_size 64 --projection_dim 128 \

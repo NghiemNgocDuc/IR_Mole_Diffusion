@@ -23,7 +23,7 @@ export MKL_NUM_THREADS="$OMP_NUM_THREADS"
 resume_args=()
 if [[ "${RESIDUAL_RESUME:-0}" == "1" ]]; then resume_args=(--resume); fi
 printf 'Output: %s\nReusing saved training candidates; development selection precedes assessment.\nTwo hours is the job limit, not an ETA. Input verification runs before training.\n' "$output"
-conda run -n "${CONDA_ENV:-base}" --no-capture-output python -u train_residual_selector.py \
+conda run -n "${CONDA_ENV:-base}" --no-capture-output python -u training/train_residual_selector.py \
   --checkpoint "$checkpoint" --baseline_report "$report" --mining_dir "$mining" --output_dir "$output" \
   --data data/processed/squirl.npz --splits data/processed/splits.json \
   --device cuda --dev_size 2000 --partition_seed 20261110 --epochs 20 --patience 3 \

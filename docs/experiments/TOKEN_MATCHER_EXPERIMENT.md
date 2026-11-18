@@ -8,7 +8,7 @@ measured bottlenecks are in [the research review](../TOP1_RESEARCH_AND_NEXT_EXPE
 ## Upload and start
 
 Upload **`unity_token_matcher_update.zip` to `~/diffusion/`** on Unity. That is the
-project root containing `train_spectrum.py`, not the inner `~/diffusion/diffusion/`
+project root containing `training/train_spectrum.py`, not the inner `~/diffusion/diffusion/`
 Python package directory. This additive update assumes the previous accuracy and
 residual-selector updates are installed. It uses existing Python dependencies.
 
@@ -18,7 +18,7 @@ Paste into the Unity terminal:
 cd ~/diffusion &&
 unzip -o unity_token_matcher_update.zip &&
 mkdir -p logs &&
-sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base train_token_matcher.sh
+sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base training/train_token_matcher.sh
 ```
 
 If the file was uploaded to the inner directory, use

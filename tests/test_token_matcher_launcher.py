@@ -25,7 +25,7 @@ def test_launcher_routes_inputs_and_refuses_missing_or_existing_output(tmp_path)
     capture = tmp_path / 'arguments.txt'
     env = {k: v for k, v in os.environ.items() if not k.startswith('MATCHER_')}
     env.update(SLURM_SUBMIT_DIR=tmp_path.as_posix(), SLURM_JOB_ID='99002', CONDA_ENV='base',
-               CAPTURE=capture.as_posix(), LAUNCHER=(root / 'train_token_matcher.sh').as_posix())
+               CAPTURE=capture.as_posix(), LAUNCHER=(root / 'training/train_token_matcher.sh').as_posix())
     script = 'module() { :; }; conda() { printf "%s\\n" "$@" > "$CAPTURE"; }; export -f module conda; source "$LAUNCHER"'
     result = subprocess.run([str(bash), '-c', script], env=env, capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
@@ -63,5 +63,5 @@ def test_package_contains_only_allowed_additions_with_valid_hashes(tmp_path, mon
         assert not manifest['model_weights_included'] and not manifest['scientific_accuracy_measured_locally']
         for name, digest in manifest['sha256'].items():
             assert hashlib.sha256(archive.read(name)).hexdigest() == digest
-        assert b'\r' not in archive.read('train_token_matcher.sh')
+        assert b'\r' not in archive.read('training/train_token_matcher.sh')
         assert 'diffusion/spectrum.py' not in archive.namelist()

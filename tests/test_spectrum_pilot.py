@@ -12,7 +12,7 @@ from rdkit import Chem
 
 from diffusion.data import file_sha256
 from diffusion.spectrum import SpectrumStructureModel
-from evaluate_spectrum import main as evaluate
+from evaluation.evaluate_spectrum import main as evaluate
 from scripts.run_spectrum_pilot import check_budget, main as pilot, read_json
 
 

@@ -5,7 +5,7 @@ import pytest
 from test_compatibility import tiny_experiment, single_thread
 from test_residual_selector import candidate
 from diffusion.data import file_sha256
-import train_token_matcher as runner
+import training.train_token_matcher as runner
 
 
 def test_shuffle_keeps_every_training_row_and_merges_singletons():

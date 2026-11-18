@@ -5,15 +5,15 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
-FILES = ('train_generated_matcher.py', 'train_generated_matcher.sh',
-         'diffusion/generated_matcher_data.py', 'GENERATED_MATCHER_EXPERIMENT.md',
+FILES = ('training/train_generated_matcher.py', 'training/train_generated_matcher.sh',
+         'diffusion/generated_matcher_data.py', 'docs/experiments/GENERATED_MATCHER_EXPERIMENT.md',
          'tests/test_generated_matcher.py', 'tests/test_generated_matcher_launcher.py',
          'scripts/package_generated_matcher.py')
 
 
 def main():
     contents = {n: (ROOT/n).read_bytes() for n in FILES}
-    assert b'\r' not in contents['train_generated_matcher.sh']
+    assert b'\r' not in contents['training/train_generated_matcher.sh']
     manifest = {'schema_version': 1, 'weights_included': False,
         'requires_existing_token_matcher_project': True,
         'sha256': {n: hashlib.sha256(b).hexdigest() for n,b in contents.items()}}

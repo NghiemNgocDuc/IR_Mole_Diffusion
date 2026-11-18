@@ -19,7 +19,7 @@ BOND_STATS="./data/SQuIRL/bond_stats.json"
 SAVE_DIR="./ckpt/diffusion_squirl"
 ENCODER_CKPT="./models_formula/squirl/best-epoch=033-val_loss=0.102336.ckpt"
 
-python train_diffusion_v2.py \
+python training/train_diffusion_v2.py \
     --ckpt "$ENCODER_CKPT" \
     --data "$DATA_NPZ" \
     --symbol_to_idx_path "$VOCAB" \

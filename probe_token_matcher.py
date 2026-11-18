@@ -13,7 +13,7 @@ from diffusion.progress import EvaluationProgress
 from diffusion.spectrum_audit import atomic_json, exclusive_report, summarize_records
 from diffusion.token_matcher import TokenMatcher
 from scripts.compare_spectrum_pilot import paired_metrics, BOOTSTRAP_SEED
-from train_token_matcher import validate_inputs, score_pools, prediction_records, orders_for
+from training.train_token_matcher import validate_inputs, score_pools, prediction_records, orders_for
 
 ROOT = Path(__file__).resolve().parent
 

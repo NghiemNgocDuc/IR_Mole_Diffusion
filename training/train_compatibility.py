@@ -17,7 +17,7 @@ from diffusion.spectrum_audit import atomic_json, row_record, summarize_records,
 from scripts.compare_spectrum_pilot import (BOOTSTRAP_REPLICAS, BOOTSTRAP_SEED, paired_metrics,
                                             same_json, validate_report)
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 FEATURE_SOURCES = ("diffusion/encoder.py", "diffusion/model.py", "diffusion/data.py")
 
 
@@ -66,7 +66,7 @@ def run(args):
     fingerprints, identities = training_fingerprints(data, training_rows, manifest["splits"]["train"])
     sources = {name: file_sha256(ROOT / name) for name in (*FEATURE_SOURCES, "diffusion/compatibility.py",
                "diffusion/ranking.py", "diffusion/spectrum.py", "diffusion/spectrum_audit.py",
-               "scripts/compare_spectrum_pilot.py", "train_compatibility.py")}
+               "scripts/compare_spectrum_pilot.py", "training/train_compatibility.py")}
     import hashlib
     configuration = {"schema_version": 1, "arguments": vars(args), "data_sha256": manifest["data_sha256"],
         "split_sha256": split_hash, "baseline_checkpoint_sha256": checkpoint_hash,

@@ -28,7 +28,7 @@ export MKL_NUM_THREADS="$OMP_NUM_THREADS"
 compatibility_output="${COMPATIBILITY_OUTPUT:-runs/compatibility_${SLURM_JOB_ID:-manual}}"
 
 printf 'Separate compatibility experiment; checkpoint: %s; report: %s; fresh output: %s\n' "$compat_checkpoint" "$compat_report" "$compatibility_output"
-conda run -n "${CONDA_ENV:-base}" --no-capture-output python -u train_compatibility.py \
+conda run -n "${CONDA_ENV:-base}" --no-capture-output python -u training/train_compatibility.py \
   --checkpoint "$compat_checkpoint" \
   --baseline_report "$compat_report" \
   --data data/processed/squirl.npz \

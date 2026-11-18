@@ -21,9 +21,9 @@ BASELINE_CHECKPOINT="${BASELINE_CHECKPOINT:-runs/spectrum/checkpoints/best.ckpt}
 CANDIDATE_CHECKPOINT="${CANDIDATE_CHECKPOINT:-runs/spectrum_rank_finetune/checkpoints/best.ckpt}"
 EVAL_LIMIT="${EVAL_LIMIT:-500}"
 mkdir -p "$COMPARE_OUTPUT"
-srun python -u evaluate_spectrum.py --checkpoint "$BASELINE_CHECKPOINT" --device cuda \
+srun python -u evaluation/evaluate_spectrum.py --checkpoint "$BASELINE_CHECKPOINT" --device cuda \
     --split val --limit "$EVAL_LIMIT" --beam_size 5 --output "$COMPARE_OUTPUT/baseline.json"
-srun python -u evaluate_spectrum.py --checkpoint "$CANDIDATE_CHECKPOINT" --device cuda \
+srun python -u evaluation/evaluate_spectrum.py --checkpoint "$CANDIDATE_CHECKPOINT" --device cuda \
     --split val --limit "$EVAL_LIMIT" --beam_size 5 --output "$COMPARE_OUTPUT/finetuned.json"
 python -u scripts/compare_rank_results.py --baseline "$COMPARE_OUTPUT/baseline.json" \
     --candidate "$COMPARE_OUTPUT/finetuned.json" --output "$COMPARE_OUTPUT/comparison.json"

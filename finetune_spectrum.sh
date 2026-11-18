@@ -23,9 +23,9 @@ if [[ -f "$FINETUNE_OUTPUT/checkpoints/last.ckpt" ]]; then
     exit 1
 fi
 if [[ ! -f "$FINETUNE_OUTPUT/ranking_negatives.npz" ]]; then
-    python -u prepare_ranking.py --output "$FINETUNE_OUTPUT/ranking_negatives.npz"
+    python -u preparation/prepare_ranking.py --output "$FINETUNE_OUTPUT/ranking_negatives.npz"
 fi
-srun python -u train_spectrum.py --config configs/spectrum_rank_finetune.json \
+srun python -u training/train_spectrum.py --config configs/spectrum_rank_finetune.json \
     --finetune_from "$SPECTRUM_SOURCE" --accelerator gpu \
     --ranking_negatives "$FINETUNE_OUTPUT/ranking_negatives.npz" --save_dir "$FINETUNE_OUTPUT" "$@"
 echo "Fine-tune complete. Compare validation identification before selecting these weights."

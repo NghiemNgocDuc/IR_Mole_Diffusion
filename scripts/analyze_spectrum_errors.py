@@ -329,7 +329,7 @@ def write_outputs(output_dir, analysis, rows, protected_paths=()):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--report", required=True, help="Full evaluate_spectrum.py JSON, including rows")
+    parser.add_argument("--report", required=True, help="Full evaluation/evaluate_spectrum.py JSON, including rows")
     parser.add_argument("--data", default="data/processed/squirl.npz")
     parser.add_argument("--splits", default="data/processed/splits.json")
     parser.add_argument("--chemical_rows", help="Optional chemical_rows.csv from the dataset audit")

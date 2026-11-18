@@ -8,7 +8,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 FILES = ['diffusion/model.py', 'diffusion/opls_bridge.py', 'diffusion/opls_backend.py',
          'diffusion/opls_client.py', 'diffusion/opls_guidance.py', 'scripts/opls_worker.py',
-         'predict_opls.py', 'run_opls_pipeline.sh', 'OPLS_PIPELINE_PILOT.md',
+         'predict_opls.py', 'run_opls_pipeline.sh', 'docs/experiments/OPLS_PIPELINE_PILOT.md',
          'tests/test_opls_sampler.py', 'tests/test_opls_pipeline.py',
          'docs/results/opls_readiness_1807422.md']
 

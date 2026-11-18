@@ -19,9 +19,9 @@ from diffusion.residual_selector import decoder_scores
 from diffusion.spectrum_audit import atomic_json, exclusive_report
 from diffusion.token_matcher import TokenMatcher
 from diffusion.token_matcher_data import spectra_batch, tokenize_selfies
-from evaluate_spectrum import valid_candidates
+from evaluation.evaluate_spectrum import valid_candidates
 from probe_token_matcher import validate_replay
-from train_token_matcher import validate_inputs, score_pools
+from training.train_token_matcher import validate_inputs, score_pools
 
 ROOT = Path(__file__).resolve().parent
 

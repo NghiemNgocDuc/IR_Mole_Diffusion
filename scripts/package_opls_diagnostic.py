@@ -7,7 +7,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 FILES=('diffusion/graph_identity.py','diffusion/opls_backend.py',
        'scripts/diagnose_opls_benchmark.py','diagnose_opls_benchmark.sh',
-       'tests/test_opls_diagnostics.py','OPLS_DIAGNOSTIC.md')
+       'tests/test_opls_diagnostics.py','docs/experiments/OPLS_DIAGNOSTIC.md')
 
 
 def main():

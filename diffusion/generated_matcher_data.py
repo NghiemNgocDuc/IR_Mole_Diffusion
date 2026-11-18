@@ -7,7 +7,7 @@ from diffusion.ranking import canonical_identity
 from diffusion.progress import EvaluationProgress
 from diffusion.spectrum_audit import atomic_json
 from diffusion.token_matcher_data import spectra_batch, tokenize_selfies
-from evaluate_spectrum import valid_candidates
+from evaluation.evaluate_spectrum import valid_candidates
 
 
 def generated_plan(original, generated, positives, identities):

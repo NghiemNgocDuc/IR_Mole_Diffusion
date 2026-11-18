@@ -21,7 +21,7 @@ module load conda/latest
 export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-4}"
 export MKL_NUM_THREADS="$OMP_NUM_THREADS"
 printf 'Output: %s\nTwo private matcher arms, ten epochs each; same training pairs and negatives.\nTwelve hours is the job limit, not an ETA. Original decoder stays unchanged.\n' "$output"
-conda run -n "${CONDA_ENV:-base}" --no-capture-output python -u train_token_matcher.py \
+conda run -n "${CONDA_ENV:-base}" --no-capture-output python -u training/train_token_matcher.py \
   --checkpoint "$checkpoint" --baseline_report "$report" --output_dir "$output" \
   --data data/processed/squirl.npz --splits data/processed/splits.json --device cuda \
   --dev_size 2000 --partition_seed 20261110 --epochs 10 --warmup_epochs 1 \

@@ -8,7 +8,7 @@ import torch
 from diffusion.data import file_sha256
 from diffusion.spectrum_audit import exclusive_report
 from diffusion.spectrum import SpectrumStructureModel
-from evaluate_spectrum import main
+from evaluation.evaluate_spectrum import main
 
 
 @pytest.fixture

@@ -18,7 +18,7 @@ from diffusion.opls_backend import declared_graph
 from diffusion.opls_client import OPLSClient
 from diffusion.opls_guidance import OPLSGuidance
 from diffusion.preprocessing import bond_array
-from evaluate_spectrum import valid_candidates
+from evaluation.evaluate_spectrum import valid_candidates
 from predict_opls import checkpoint_inventory, choose_checkpoint
 
 ARMS = ('unguided', 'opls_guided')
@@ -26,7 +26,7 @@ BINS = ((3, 10), (11, 18), (19, 29))
 SOURCES = ('benchmark_opls.py', 'predict_opls.py', 'diffusion/model.py',
            'diffusion/opls_backend.py', 'diffusion/opls_bridge.py',
            'diffusion/opls_client.py', 'diffusion/opls_guidance.py', 'scripts/opls_worker.py',
-           'diffusion/data.py', 'diffusion/spectrum.py', 'evaluate_spectrum.py')
+           'diffusion/data.py', 'diffusion/spectrum.py', 'evaluation/evaluate_spectrum.py')
 
 
 def select_inputs(ids, counts, train, per_bin, seed):

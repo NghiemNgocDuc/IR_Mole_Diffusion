@@ -5,15 +5,15 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
-FILES = ('diffusion/token_matcher.py', 'diffusion/token_matcher_data.py', 'train_token_matcher.py',
-         'train_token_matcher.sh', 'TOKEN_MATCHER_EXPERIMENT.md', 'docs/TOP1_RESEARCH_AND_NEXT_EXPERIMENT.md',
+FILES = ('diffusion/token_matcher.py', 'diffusion/token_matcher_data.py', 'training/train_token_matcher.py',
+         'training/train_token_matcher.sh', 'docs/experiments/TOKEN_MATCHER_EXPERIMENT.md', 'docs/TOP1_RESEARCH_AND_NEXT_EXPERIMENT.md',
          'tests/test_token_matcher.py', 'tests/test_token_matcher_data.py', 'tests/test_token_matcher_runner.py',
          'tests/test_token_matcher_launcher.py', 'scripts/package_token_matcher.py')
 
 
 def main():
     payload = {name: (ROOT / name).read_bytes() for name in FILES}
-    if b'\r' in payload['train_token_matcher.sh']:
+    if b'\r' in payload['training/train_token_matcher.sh']:
         raise ValueError('Slurm launcher must use Unix LF line endings.')
     manifest = {'schema_version': 1, 'purpose': 'Full-token IR/molecule matching: frozen versus adapted private encoder',
         'sha256': {name: hashlib.sha256(data).hexdigest() for name, data in payload.items()},

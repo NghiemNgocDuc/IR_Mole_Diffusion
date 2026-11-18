@@ -66,5 +66,5 @@ def test_package_is_additive_and_hash_verified(tmp_path, monkeypatch):
         for name, digest in manifest['sha256'].items():
             assert hashlib.sha256(archive.read(name)).hexdigest() == digest
         assert b'\r' not in archive.read('probe_token_matcher.sh')
-        assert 'train_token_matcher.py' not in archive.namelist()
+        assert 'training/train_token_matcher.py' not in archive.namelist()
         assert not any(n.endswith(('.pt', '.ckpt')) for n in archive.namelist())

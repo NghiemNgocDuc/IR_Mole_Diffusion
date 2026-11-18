@@ -5,7 +5,7 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
-FILES = ('probe_token_matcher.py', 'probe_token_matcher.sh', 'TOKEN_MATCHER_PROBE.md',
+FILES = ('probe_token_matcher.py', 'probe_token_matcher.sh', 'docs/experiments/TOKEN_MATCHER_PROBE.md',
          'scripts/audit_token_matcher.py', 'scripts/package_token_matcher_probe.py',
          'tests/test_token_matcher_probe.py', 'tests/test_token_matcher_probe_launcher.py',
          'docs/results/token_matcher_1426578.md')

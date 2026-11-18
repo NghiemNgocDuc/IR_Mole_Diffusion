@@ -137,7 +137,7 @@ def main(argv=None):
     resolved = {**vars(args), "data": str(Path(args.data).resolve()), "splits": str(Path(args.splits).resolve()),
         "data_sha256": manifest["data_sha256"], "split_manifest": manifest, "data_audit": audit,
         "encoder_spec_resolved": encoder_spec,
-        "validation_selection": "val_loss tracks denoising; final physical/conformer selection requires evaluate_diffusion.py",
+        "validation_selection": "val_loss tracks denoising; final physical/conformer selection requires evaluation/evaluate_diffusion.py",
         "test_usage": "test split is held out and excluded from trainer.fit"}
     (output / "resolved_config.json").write_text(json.dumps(resolved, indent=2) + "\n", encoding="utf-8")
     if args.dry_run:

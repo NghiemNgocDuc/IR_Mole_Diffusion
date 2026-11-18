@@ -5,14 +5,14 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
-FILES = ('diffusion/hard_selector.py', 'train_hard_selector.py', 'train_hard_selector.sh',
-         'HARD_SELECTOR_EXPERIMENT.md', 'tests/test_hard_selector.py', 'tests/test_compatibility.py',
+FILES = ('diffusion/hard_selector.py', 'training/train_hard_selector.py', 'training/train_hard_selector.sh',
+         'docs/experiments/HARD_SELECTOR_EXPERIMENT.md', 'tests/test_hard_selector.py', 'tests/test_compatibility.py',
          'scripts/package_hard_selector.py')
 
 
 def main():
     payload = {name: (ROOT / name).read_bytes() for name in FILES}
-    if b'\r' in payload['train_hard_selector.sh']:
+    if b'\r' in payload['training/train_hard_selector.sh']:
         raise ValueError('Launcher must have Unix LF line endings.')
     manifest = {'schema_version': 1, 'purpose': 'Matched random vs generated-hard-negative selector pilot',
                 'sha256': {name: hashlib.sha256(data).hexdigest() for name, data in payload.items()},

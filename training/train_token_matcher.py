@@ -23,12 +23,12 @@ from diffusion.spectrum import SpectrumStructureModel
 from diffusion.spectrum_audit import atomic_json, exclusive_report, row_record, summarize_records, validate_selection
 from diffusion.token_matcher import TokenMatcher, identity_contrastive_loss
 from diffusion.token_matcher_data import TrainingPairs, spectra_batch, tokenize_selfies
-from evaluate_spectrum import valid_candidates
+from evaluation.evaluate_spectrum import valid_candidates
 from scripts.compare_spectrum_pilot import BOOTSTRAP_SEED, paired_metrics, same_json, validate_report
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 FEATURE_SOURCES = ("diffusion/encoder.py", "diffusion/model.py", "diffusion/data.py",
-                   "diffusion/spectrum.py", "evaluate_spectrum.py", "diffusion/spectrum_audit.py")
+                   "diffusion/spectrum.py", "evaluation/evaluate_spectrum.py", "diffusion/spectrum_audit.py")
 # Fixed before looking at this experiment's assessment outcomes. None = matcher only.
 MIX_WEIGHTS = (0., .1, .3, 1., 3., None)
 ARMS = ('frozen', 'finetuned')
@@ -244,7 +244,7 @@ def run(args):
             tokenize_selfies([c['selfies'] for c in record['candidates']], data['vocabulary'], max_len)
     source_names = (*FEATURE_SOURCES, 'diffusion/ranking.py', 'diffusion/progress.py',
         'diffusion/residual_selector.py', 'diffusion/compatibility.py', 'diffusion/token_matcher.py',
-        'diffusion/token_matcher_data.py', 'train_token_matcher.py', 'scripts/compare_spectrum_pilot.py')
+        'diffusion/token_matcher_data.py', 'training/train_token_matcher.py', 'scripts/compare_spectrum_pilot.py')
     protected = {str(Path(p).resolve()): file_sha256(p) for p in (args.checkpoint, args.data, args.splits, args.baseline_report)}
     original_encoder_hash = state_hash(generator.encoder)
     cfg = {'schema_version': 1, 'arguments': vars(args), 'diagnostic': diagnostic,

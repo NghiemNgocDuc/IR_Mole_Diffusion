@@ -8,7 +8,7 @@ from test_residual_selector import candidate
 from diffusion.data import file_sha256
 from diffusion.matcher_task_audit import (select_training_indices, validate_negative_plan,
     matched_generated_groups, pool_statistics, paired_task_gap)
-from train_token_matcher import main as train
+from training.train_token_matcher import main as train
 import audit_matcher_training_tasks as audit
 
 
@@ -88,7 +88,7 @@ def test_real_tiny_train_then_audit_is_read_only_and_uses_training_rows(tiny_exp
         '--progress_interval', '999', '--diagnostic'])
     protected = {str(p): file_sha256(p) for p in run_dir.rglob('*') if p.is_file()}
     protected.update({str(p): file_sha256(p) for p in (checkpoint, report, base.parent/'data.npz', base.parent/'splits.json')})
-    import train_token_matcher
+    import training.train_token_matcher as train_token_matcher
     monkeypatch.setattr(train_token_matcher, 'train_epoch', lambda *a, **kw: pytest.fail('Audit attempted training'))
     args = ['--run_dir', str(run_dir), '--output_dir', str(output), '--device', 'cpu', '--limit', '4', '--diagnostic']
     results = audit.main(args)

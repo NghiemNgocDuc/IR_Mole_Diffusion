@@ -15,10 +15,10 @@ from diffusion.spectrum import SpectrumStructureModel
 from diffusion.spectrum_audit import atomic_json, exclusive_report, row_record, summarize_records, validate_selection
 from diffusion.residual_selector import (CandidateBatch, decoder_scores, targets_for, partition_validation,
     corrections, ordered_candidates, fit_with_development)
-from evaluate_spectrum import valid_candidates
-from train_hard_selector import validate_mined, FEATURE_SOURCES
+from evaluation.evaluate_spectrum import valid_candidates
+from training.train_hard_selector import validate_mined, FEATURE_SOURCES
 from scripts.compare_spectrum_pilot import BOOTSTRAP_SEED, paired_metrics, same_json, validate_report
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def run(args):
@@ -106,7 +106,7 @@ def run(args):
     assessment = [by_row[row] for row in assessment_rows]
     names = set((*FEATURE_SOURCES, 'diffusion/compatibility.py', 'diffusion/hard_selector.py',
                  'diffusion/residual_selector.py', 'diffusion/ranking.py', 'diffusion/progress.py',
-                 'train_residual_selector.py', 'train_hard_selector.py', 'scripts/compare_spectrum_pilot.py'))
+                 'training/train_residual_selector.py', 'training/train_hard_selector.py', 'scripts/compare_spectrum_pilot.py'))
     cfg = {'schema_version': 1, 'arguments': {k: v for k, v in vars(args).items() if k != 'resume'},
            'data_sha256': manifest['data_sha256'], 'split_sha256': split_hash,
            'checkpoint_sha256': checkpoint_hash, 'baseline_report_sha256': hashlib.sha256(baseline_bytes).hexdigest(),

@@ -5,7 +5,7 @@ import pytest
 from test_compatibility import tiny_experiment, single_thread
 from test_residual_selector import candidate
 from diffusion.data import file_sha256
-from train_token_matcher import main as train, prediction_records
+from training.train_token_matcher import main as train, prediction_records
 import probe_token_matcher as probe
 
 
@@ -55,7 +55,7 @@ def test_probe_replays_all_selected_weights_without_mutating_training_run(tiny_e
            '--progress_interval', '999', '--diagnostic'])
     protected = {str(p): file_sha256(p) for p in run_dir.rglob('*') if p.is_file()}
     # The probe must not call any fitting path.
-    import train_token_matcher
+    import training.train_token_matcher as train_token_matcher
     monkeypatch.setattr(train_token_matcher, 'train_epoch', lambda *a, **kw: pytest.fail('Probe attempted training'))
     result = probe.main(['--run_dir', str(run_dir), '--output_dir', str(output), '--device', 'cpu', '--diagnostic'])
     assert any(v.get('real_input_replayed') for v in result.values())

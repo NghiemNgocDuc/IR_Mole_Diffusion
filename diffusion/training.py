@@ -49,7 +49,7 @@ def parser_for(stage):
         parser.add_argument("--label_smoothing", type=float, default=0.05)
         parser.add_argument("--ranking_weight", type=float, default=0.0)
         parser.add_argument("--ranking_margin", type=float, default=0.1)
-        parser.add_argument("--ranking_negatives", help="Verified train-only negative-row NPZ prepared by prepare_ranking.py")
+        parser.add_argument("--ranking_negatives", help="Verified train-only negative-row NPZ prepared by preparation/prepare_ranking.py")
     else:
         parser.add_argument("--encoder_checkpoint", help="New spectrum-stage checkpoint; initialize its encoder")
         parser.add_argument("--encoder_lr", type=float, default=1e-5)
@@ -132,7 +132,7 @@ def train(stage, argv=None):
             provenance["ranking_margin"] = args.ranking_margin
     model_class = SpectrumStructureModel if stage == "spectrum" else EquivariantDiffusion3D_v4
     if stage == "spectrum" and "selfies_tokens" not in data:
-        parser.error("Spectrum training needs SELFIES labels from prepare_squirl.py.")
+        parser.error("Spectrum training needs SELFIES labels from preparation/prepare_squirl.py.")
     if stage == "diffusion":
         if (args.graph_conditioning or args.physics_weight > 0) and data["bond_types"] is None:
             parser.error("Graph conditioning/physics requires verified bond_types.")

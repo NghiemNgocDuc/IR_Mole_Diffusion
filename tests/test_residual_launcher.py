@@ -19,7 +19,7 @@ def test_launcher_routes_existing_inputs_and_refuses_missing_input(tmp_path):
     capture = tmp_path / 'arguments.txt'
     env = {k: v for k, v in os.environ.items() if not k.startswith('RESIDUAL_')}
     env.update(SLURM_SUBMIT_DIR=tmp_path.as_posix(), SLURM_JOB_ID='99001', CONDA_ENV='base',
-               CAPTURE=capture.as_posix(), LAUNCHER=(root / 'train_residual_selector.sh').as_posix())
+               CAPTURE=capture.as_posix(), LAUNCHER=(root / 'training/train_residual_selector.sh').as_posix())
     script = 'module() { :; }; conda() { printf "%s\\n" "$@" > "$CAPTURE"; }; export -f module conda; source "$LAUNCHER"'
     result = subprocess.run([str(bash), '-c', script], env=env, capture_output=True, text=True)
     assert result.returncode == 0, result.stderr

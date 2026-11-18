@@ -44,7 +44,7 @@ def invoke(*arguments):
 def source_hashes():
     paths = [*Path(ROOT / "diffusion").glob("*.py")]
     paths += [ROOT / name for name in (
-        "train_spectrum.py", "prepare_ranking.py", "mine_ranking.py", "evaluate_spectrum.py",
+        "training/train_spectrum.py", "preparation/prepare_ranking.py", "mine_ranking.py", "evaluation/evaluate_spectrum.py",
         "scripts/run_spectrum_pilot.py", "scripts/compare_spectrum_pilot.py",
         "scripts/compare_decoding.py", "scripts/analyze_spectrum_errors.py")]
     return {path.relative_to(ROOT).as_posix(): file_sha256(path) for path in sorted(paths)}
@@ -134,7 +134,7 @@ def preflight(args):
 
 def evaluate_checkpoint(args, output, checkpoint, selection, name, score_mode="legacy", beam_size=5):
     report_path = output / f"{name}.json"
-    invoke("evaluate_spectrum.py", "--checkpoint", checkpoint, "--data", args.data, "--splits", args.splits,
+    invoke("evaluation/evaluate_spectrum.py", "--checkpoint", checkpoint, "--data", args.data, "--splits", args.splits,
         "--device", args.device, "--split", "val", "--selection", selection["policy"],
         "--limit", len(selection["rows"]), "--seed", selection["seed"], "--beam_size", beam_size,
         "--score_mode", score_mode, "--length_penalty", .6,
@@ -182,7 +182,7 @@ def train_arm(args, output, recipe, name, weight, negatives):
         index += 1
     attempt = output / f"{name}_attempt_{index}"
     attempt.mkdir()
-    command = ["train_spectrum.py", "--data", args.data, "--splits", args.splits,
+    command = ["training/train_spectrum.py", "--data", args.data, "--splits", args.splits,
         "--finetune_from", output / "baseline_start.ckpt", "--save_dir", attempt,
         "--epochs", args.epochs, "--batch_size", args.batch_size, "--seed", args.seed,
         "--lr", 2e-5, "--weight_decay", 1e-5, "--ema_decay", .999, "--label_smoothing", .05,
@@ -252,7 +252,7 @@ def write_preparation(output):
         "Default mining searches 5,000 of 99,825 training inputs; it is a bounded pilot, not exhaustive mining.",
         "No held-out targets enter pair construction. Wider search and consistent scoring may improve or worsen accuracy.", "",
         "Review these results before launching finetune_spectrum_pilot.sh with PILOT_OUTPUT set to this directory.",
-        "The optional train_compatibility.sh experiment trains only separate projection heads; it is not started here.", ""]
+        "The optional training/train_compatibility.sh experiment trains only separate projection heads; it is not started here.", ""]
     (output / "PREPARATION.md").write_text("\n".join(lines), encoding="utf-8")
     paths = [output / name for name in ("pilot.json", "selection.json", "baseline.json", "negatives.json",
         "mined_negatives.json", "decoding_comparison.json", "decoding_comparison.md", "PREPARATION.md")]
@@ -311,7 +311,7 @@ def run(args):
         stage("3/8: Preparing static and model-generated training-only negatives")
         negatives = output / "ranking_negatives.npz"
         negative_meta = output / "negatives.json"
-        invoke("prepare_ranking.py", "--data", args.data, "--splits", args.splits,
+        invoke("preparation/prepare_ranking.py", "--data", args.data, "--splits", args.splits,
                "--output", negatives, "--seed", args.seed, "--max_pool", 32, "--resume")
         from diffusion.ranking import load_negative_rows
         load_negative_rows(negatives, manifest["splits"]["train"], recipe["data_sha256"], recipe["split_sha256"])

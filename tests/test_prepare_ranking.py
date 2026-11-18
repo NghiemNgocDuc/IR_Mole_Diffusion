@@ -6,7 +6,7 @@ import pytest
 from rdkit import Chem
 
 from diffusion.data import file_sha256
-import prepare_ranking
+import preparation.prepare_ranking as prepare_ranking
 
 
 @pytest.fixture

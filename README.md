@@ -80,7 +80,7 @@ uploaded together, reuse them instead of converting again.
 
 ```bash
 srun --partition=cpu --cpus-per-task=4 --mem=32G --time=01:00:00 \
-  python -u prepare_squirl.py --trust_legacy
+  python -u preparation/prepare_squirl.py --trust_legacy
 python audit_dataset.py --data data/processed/squirl.npz \
   --splits data/processed/splits.json --output data/processed/audit.json
 ```
@@ -145,7 +145,7 @@ for workload calculations, published comparison results, and the current
 ## 4. Train stage 1, then inspect held-out graph predictions
 
 ```bash
-sbatch train_spectrum.sh
+sbatch training/train_spectrum.sh
 ```
 
 Defaults are in `configs/spectrum.json`: encoder width 256, four encoder and four
@@ -167,9 +167,9 @@ enabled and Python output is unbuffered. Outputs:
 Assess identification in a GPU batch job before investing in stage 2:
 
 ```bash
-sbatch --partition=gpu-highvram eval_spectrum.sh
+sbatch --partition=gpu-highvram evaluation/eval_spectrum.sh
 # For the user's existing base + user-install setup:
-# sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base eval_spectrum.sh
+# sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base evaluation/eval_spectrum.sh
 tail -F logs/graph-eval-JOBID.out logs/graph-eval-JOBID.err
 ```
 
@@ -203,7 +203,7 @@ training a large coordinate model.
 After stage 1 produces `best.ckpt`:
 
 ```bash
-sbatch train_diffusion.sh
+sbatch training/train_diffusion.sh
 ```
 
 Defaults in `configs/diffusion.json`: width 256, six layers, spectrum-to-node
@@ -227,9 +227,9 @@ Prefer the epoch checkpoint if recent; use the recovery checkpoint if it saves
 substantial work. Substitute `spectrum` for the first stage.
 
 ```bash
-sbatch --export=ALL,RESUME_CHECKPOINT=runs/diffusion/checkpoints/last.ckpt train_diffusion.sh
+sbatch --export=ALL,RESUME_CHECKPOINT=runs/diffusion/checkpoints/last.ckpt training/train_diffusion.sh
 # Or, if the periodic recovery checkpoint is newer:
-sbatch --export=ALL,RESUME_CHECKPOINT=runs/diffusion/recovery/last.ckpt train_diffusion.sh
+sbatch --export=ALL,RESUME_CHECKPOINT=runs/diffusion/recovery/last.ckpt training/train_diffusion.sh
 ```
 
 Resume restores optimizer, scheduler, model, and EMA. A recovery checkpoint from
@@ -245,7 +245,7 @@ After measuring the baseline, run a separate experiment with a small bond/clash
 penalty. This coefficient is a starting point to tune on validation data.
 
 ```bash
-sbatch train_diffusion.sh \
+sbatch training/train_diffusion.sh \
   --finetune_from runs/diffusion/checkpoints/best.ckpt \
   --save_dir runs/diffusion_physics --physics_weight 0.001 \
   --unfreeze_at_epoch 0 --lr 0.00003 --encoder_lr 0.000003 --epochs 50
@@ -260,7 +260,7 @@ better chemistry.
 ## 6. Evaluate coordinate quality and the benefit of IR
 
 ```bash
-sbatch eval_diffusion.sh
+sbatch evaluation/eval_diffusion.sh
 ```
 
 This evaluates validation molecules with their graph supplied and explicitly
@@ -293,7 +293,7 @@ For comparison with the default prediction pathway's MMFF relaxation, evaluate
 the same rows and seed in a separate run, retaining the original raw report:
 
 ```bash
-sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base eval_diffusion.sh \
+sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base evaluation/eval_diffusion.sh \
   --refine --refine_iterations 500 --output_dir evaluation/diffusion_val_refined
 ```
 
@@ -308,7 +308,7 @@ Run ablations on the same held-out rows with `--spectrum_control removed` and
 `--spectrum_control shuffled`. For example:
 
 ```bash
-python evaluate_diffusion.py --checkpoint runs/diffusion/checkpoints/best.ckpt \
+python evaluation/evaluate_diffusion.py --checkpoint runs/diffusion/checkpoints/best.ckpt \
   --data data/processed/squirl.npz --splits data/processed/splits.json \
   --use_inference_graph --chemistry --device cuda --limit 500 \
   --num_samples 5 --n_steps 200 --spectrum_control shuffled \
@@ -319,7 +319,7 @@ If removing or shuffling spectra barely changes performance, do not claim the
 coordinate model uses IR effectively. Compare the graph-only conformer baseline:
 
 ```bash
-python evaluate_rdkit.py --split val --limit 500 --num_samples 5 \
+python evaluation/evaluate_rdkit.py --split val --limit 500 --num_samples 5 \
   --output_dir evaluation/rdkit_val
 ```
 
@@ -413,9 +413,9 @@ of the generated molecule's IR.
 | Path | Purpose |
 | --- | --- |
 | `diffusion/` | Supported encoder, graph decoder, denoiser, physics, data, and trainer |
-| `prepare_squirl.py` | Verified conversion and shared molecule splits |
-| `train_spectrum.py`, `train_diffusion.py` | Supported stage entry points |
-| `evaluate_spectrum.py`, `evaluate_diffusion.py` | Separate held-out identification and geometry evaluation |
+| `preparation/prepare_squirl.py` | Verified conversion and shared molecule splits |
+| `training/train_spectrum.py`, `training/train_diffusion.py` | Supported stage entry points |
+| `evaluation/evaluate_spectrum.py`, `evaluation/evaluate_diffusion.py` | Separate held-out identification and geometry evaluation |
 | `predict_structure.py` | IR-only graph-to-coordinate prediction |
 | `plot_prediction.py`, `predict_example.sh` | IR/graph/3D result pictures from actual prediction outputs |
 | `configs/`, `*.sh`, `scripts/` | Training recipes, Unity jobs, real-data smoke check |
@@ -425,7 +425,7 @@ of the generated molecule's IR.
 | `legacy/` | Original source before repairs; not supported launch scripts |
 | `data/`, `ckpt/`, `models_formula/` | Original inputs and legacy checkpoints, preserved |
 
-Old `train_diffusion_v2.py` and `inference_v2.py` now route to the corrected
+Old `training/train_diffusion_v2.py` and `inference_v2.py` now route to the corrected
 training/evaluation entry points and use the new CLI. The old `src_v2` encoder
 source is preserved as `legacy/spectrum_models.py`; it is not a supported model.
 `REPO_AUDIT.md` documents the historical problems. This folder arrived without

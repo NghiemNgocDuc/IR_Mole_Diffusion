@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]
 FILES=('predict_opls.py','benchmark_opls.py','scripts/compare_opls_engines.py',
        'scripts/probe_opls_precision.py','probe_opls_precision.sh',
        'tests/test_pipeline_raw_default.py','tests/test_opls_benchmark.py',
-       'PIPELINE_RAW_DEFAULT.md','docs/results/physical_validation_1849289_review.md')
+       'docs/experiments/PIPELINE_RAW_DEFAULT.md','docs/results/physical_validation_1849289_review.md')
 
 
 def main():

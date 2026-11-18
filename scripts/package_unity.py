@@ -29,10 +29,10 @@ def main():
     contents.add_argument("--accuracy_update_v2", action="store_true", help="Preparation-first decoding, mined-negative fine-tuning and optional compatibility scorer; existing installation required")
     args = parser.parse_args()
     files = [*Path(".").glob("*.py"), *Path(".").glob("*.sh"),
-             Path("README.md"), Path("REPO_AUDIT.md"), Path("requirements.txt"),
-             Path("EVALUATION_PROGRESS_UPDATE.md"),
-             Path("VIEWER_AND_FINETUNE.md"),
-             Path("VIEWER_3D_UPDATE.md"),
+             Path("README.md"), Path("docs/guides/REPO_AUDIT.md"), Path("requirements.txt"),
+             Path("docs/guides/EVALUATION_PROGRESS_UPDATE.md"),
+             Path("docs/guides/VIEWER_AND_FINETUNE.md"),
+             Path("docs/guides/VIEWER_3D_UPDATE.md"),
              Path("requirements-visualization.txt"),
              Path("pytest.ini"), Path(".gitignore"), Path(".gitattributes")]
     for folder in ("diffusion", "diffusion_v2", "configs", "docs", "scripts", "tests", "legacy", "viewer_assets"):
@@ -40,55 +40,55 @@ def main():
                      if path.is_file() and "__pycache__" not in path.parts)
     if args.finetune_pilot_only or args.accuracy_update_v2:
         files = [Path(name) for name in (
-            "FINETUNE_PILOT.md", "finetune_spectrum_pilot.sh", "scripts/run_spectrum_pilot.py",
+            "docs/guides/FINETUNE_PILOT.md", "finetune_spectrum_pilot.sh", "scripts/run_spectrum_pilot.py",
             "scripts/compare_spectrum_pilot.py", "scripts/analyze_spectrum_errors.py",
-            "prepare_ranking.py", "train_spectrum.py", "evaluate_spectrum.py",
+            "preparation/prepare_ranking.py", "training/train_spectrum.py", "evaluation/evaluate_spectrum.py",
             "diffusion/ranking.py", "diffusion/spectrum.py", "diffusion/training.py",
             "diffusion/progress.py", "diffusion/spectrum_audit.py",
             "docs/results/stage1_baseline_66782537.md",
             "tests/test_spectrum_pilot.py", "tests/test_spectrum_pilot_comparison.py", "tests/test_ranking.py")]
         # The pilot runner now includes preparation and the third training arm.
         files += [Path(name) for name in (
-            "prepare_spectrum_pilot.sh", "mine_ranking.py", "scripts/compare_decoding.py",
-            "train_compatibility.py", "train_compatibility.sh", "diffusion/compatibility.py",
-            "COMPATIBILITY_EXPERIMENT.md", "ACCURACY_UPDATE_V2.md",
+            "preparation/prepare_spectrum_pilot.sh", "mine_ranking.py", "scripts/compare_decoding.py",
+            "training/train_compatibility.py", "training/train_compatibility.sh", "diffusion/compatibility.py",
+            "docs/experiments/COMPATIBILITY_EXPERIMENT.md", "docs/guides/ACCURACY_UPDATE_V2.md",
             "tests/test_spectrum_decoding.py", "tests/test_mined_ranking.py", "tests/test_compatibility.py", "tests/test_prepare_ranking.py",
             "scripts/compare_rank_results.py", "pytest.ini", "docs/ACCURACY_LITERATURE_REVIEW.md")]
     elif args.complete_update:
         files = [Path(name) for name in (
-            "START_HERE_UNITY_UPDATE.md",
+            "docs/guides/START_HERE_UNITY_UPDATE.md",
             "make_viewer.py", "plot_prediction.py", "predict_example.sh",
-            "requirements-visualization.txt", "VIEWER_3D_UPDATE.md",
-            "evaluate_diffusion.py", "diffusion/evaluation.py", "EVALUATION_PROGRESS_UPDATE.md",
-            "evaluate_spectrum.py", "diffusion/spectrum_audit.py", "diffusion/progress.py",
+            "requirements-visualization.txt", "docs/guides/VIEWER_3D_UPDATE.md",
+            "evaluation/evaluate_diffusion.py", "diffusion/evaluation.py", "docs/guides/EVALUATION_PROGRESS_UPDATE.md",
+            "evaluation/evaluate_spectrum.py", "diffusion/spectrum_audit.py", "diffusion/progress.py",
             "scripts/analyze_spectrum_errors.py", "audit_spectrum_baseline.sh",
-            "BASELINE_AUDIT_UPDATE.md", "docs/DATASET_AND_OUTCOME_AUDIT.md",
+            "docs/guides/BASELINE_AUDIT_UPDATE.md", "docs/DATASET_AND_OUTCOME_AUDIT.md",
             "outputs/dataset_review/chemical_rows.csv", "outputs/dataset_review/chemical_split_audit.json")]
         files.extend(path for path in Path("viewer_assets").rglob("*")
                      if path.is_file() and "__pycache__" not in path.parts)
     elif args.baseline_audit_only:
         files = [Path(name) for name in (
-            "evaluate_spectrum.py", "diffusion/spectrum_audit.py", "diffusion/progress.py",
+            "evaluation/evaluate_spectrum.py", "diffusion/spectrum_audit.py", "diffusion/progress.py",
             "scripts/analyze_spectrum_errors.py", "audit_spectrum_baseline.sh",
-            "BASELINE_AUDIT_UPDATE.md", "docs/DATASET_AND_OUTCOME_AUDIT.md",
+            "docs/guides/BASELINE_AUDIT_UPDATE.md", "docs/DATASET_AND_OUTCOME_AUDIT.md",
             "outputs/dataset_review/chemical_rows.csv", "outputs/dataset_review/chemical_split_audit.json")]
     elif args.viewer_only:
-        files = [Path(name) for name in ("make_viewer.py", "plot_prediction.py", "VIEWER_3D_UPDATE.md")]
+        files = [Path(name) for name in ("make_viewer.py", "plot_prediction.py", "docs/guides/VIEWER_3D_UPDATE.md")]
         files.extend(path for path in Path("viewer_assets").rglob("*")
                      if path.is_file() and "__pycache__" not in path.parts)
     elif args.visualization_only:
         files = [Path("plot_prediction.py"), Path("predict_example.sh"), Path("requirements-visualization.txt")]
     elif args.progress_only:
-        files = [Path("evaluate_diffusion.py"), Path("diffusion/evaluation.py"),
-                 Path("diffusion/progress.py"), Path("EVALUATION_PROGRESS_UPDATE.md")]
+        files = [Path("evaluation/evaluate_diffusion.py"), Path("diffusion/evaluation.py"),
+                 Path("diffusion/progress.py"), Path("docs/guides/EVALUATION_PROGRESS_UPDATE.md")]
     elif args.improvements_only:
         files = [Path(name) for name in (
             "make_viewer.py", "plot_prediction.py", "predict_example.sh",
             "diffusion/ranking.py", "diffusion/spectrum.py", "diffusion/training.py",
-            "diffusion/progress.py", "prepare_ranking.py", "train_spectrum.py",
+            "diffusion/progress.py", "preparation/prepare_ranking.py", "training/train_spectrum.py",
             "configs/spectrum_rank_finetune.json", "finetune_spectrum.sh",
             "compare_spectrum.sh", "scripts/compare_rank_results.py",
-            "evaluate_spectrum.py", "VIEWER_AND_FINETUNE.md", "VIEWER_3D_UPDATE.md")]
+            "evaluation/evaluate_spectrum.py", "docs/guides/VIEWER_AND_FINETUNE.md", "docs/guides/VIEWER_3D_UPDATE.md")]
         files.extend(path for path in Path("viewer_assets").rglob("*")
                      if path.is_file() and "__pycache__" not in path.parts)
     elif not args.source_only:

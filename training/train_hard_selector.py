@@ -15,10 +15,10 @@ from diffusion.ranking import canonical_identity
 from diffusion.spectrum import SpectrumStructureModel
 from diffusion.spectrum_audit import atomic_json, exclusive_report, row_record, summarize_records, validate_selection
 from scripts.compare_spectrum_pilot import BOOTSTRAP_SEED, paired_metrics, same_json, validate_report
-from evaluate_spectrum import valid_candidates
-ROOT = Path(__file__).resolve().parent
+from evaluation.evaluate_spectrum import valid_candidates
+ROOT = Path(__file__).resolve().parents[1]
 FEATURE_SOURCES = ("diffusion/encoder.py", "diffusion/model.py", "diffusion/data.py",
-                   "diffusion/spectrum.py", "evaluate_spectrum.py", "diffusion/spectrum_audit.py")
+                   "diffusion/spectrum.py", "evaluation/evaluate_spectrum.py", "diffusion/spectrum_audit.py")
 
 
 def run(args):
@@ -68,7 +68,7 @@ def run(args):
     selected = np.random.default_rng(args.seed).permutation(manifest['splits']['train'])[:args.limit].tolist()
     source_names = (*FEATURE_SOURCES, 'diffusion/compatibility.py', 'diffusion/hard_selector.py',
                     'diffusion/ranking.py', 'diffusion/spectrum.py', 'diffusion/spectrum_audit.py',
-                    'diffusion/progress.py', 'evaluate_spectrum.py', 'train_hard_selector.py',
+                    'diffusion/progress.py', 'evaluation/evaluate_spectrum.py', 'training/train_hard_selector.py',
                     'scripts/compare_spectrum_pilot.py')
     config = {'schema_version': 1, 'arguments': {k: v for k, v in vars(args).items() if k != 'resume'},
               'data_sha256': manifest['data_sha256'], 'split_sha256': split_hash,

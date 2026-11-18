@@ -8,7 +8,7 @@ from test_compatibility import tiny_experiment, single_thread
 from diffusion.data import file_sha256
 from diffusion.hard_selector import make_groups, fit_selector, candidate_scores
 from diffusion.compatibility import molecular_fingerprints
-from train_hard_selector import main, validate_mined
+from training.train_hard_selector import main, validate_mined
 
 
 def test_exact_identity_exclusion_matched_counts_and_training_membership():

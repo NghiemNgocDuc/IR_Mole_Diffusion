@@ -15,7 +15,7 @@ from diffusion.model import EquivariantDiffusion3D_v4
 from diffusion.preprocessing import bond_array, pack_peaks
 from diffusion.physics import PhysicsLoss
 from diffusion.spectrum import SpectrumStructureModel
-from evaluate_spectrum import valid_candidates
+from evaluation.evaluate_spectrum import valid_candidates
 
 
 def predict(spectrum_model, diffusion_model, spectra, beam_size=5, conformers=5,

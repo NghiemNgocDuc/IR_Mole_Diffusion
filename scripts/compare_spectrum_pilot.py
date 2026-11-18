@@ -32,7 +32,7 @@ REQUIRED_PROVENANCE = {
     "device", "torch_num_threads", "cuda_version", "float32_matmul_precision", "cuda_matmul_allow_tf32",
     "versions", "source_sha256",
 }
-SOURCE_FILES = {"evaluate_spectrum.py", "diffusion/spectrum_audit.py", "diffusion/spectrum.py",
+SOURCE_FILES = {"evaluation/evaluate_spectrum.py", "diffusion/spectrum_audit.py", "diffusion/spectrum.py",
                 "diffusion/encoder.py", "diffusion/model.py", "diffusion/data.py"}
 
 

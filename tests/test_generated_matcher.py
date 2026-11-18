@@ -4,7 +4,7 @@ import pytest
 from test_compatibility import tiny_experiment, single_thread
 from diffusion.generated_matcher_data import generated_plan
 from diffusion.data import file_sha256
-import train_generated_matcher as runner
+import training.train_generated_matcher as runner
 
 
 def test_generated_negatives_remove_false_negatives_and_fill_distinct_fallbacks():

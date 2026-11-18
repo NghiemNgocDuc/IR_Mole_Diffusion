@@ -20,7 +20,7 @@ from diffusion.spectrum import SpectrumStructureModel
 from diffusion.opls_client import OPLSClient
 from diffusion.opls_guidance import OPLSGuidance
 from diffusion.preprocessing import bond_array
-from evaluate_spectrum import valid_candidates
+from evaluation.evaluate_spectrum import valid_candidates
 
 
 def checkpoint_inventory(roots):

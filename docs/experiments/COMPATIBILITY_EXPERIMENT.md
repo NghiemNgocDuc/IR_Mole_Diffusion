@@ -20,7 +20,7 @@ cd ~/diffusion
 mkdir -p logs
 sbatch --partition=gpu-highvram \
   --export=ALL,CONDA_ENV=base,PILOT_OUTPUT=runs/spectrum_pilot_PILOT_JOB_ID \
-  train_compatibility.sh
+  training/train_compatibility.sh
 ```
 
 Use the new job number below:
@@ -64,7 +64,7 @@ sha256sum runs/spectrum_pilot_66855524/ranking_attempt_1/checkpoints/last.ckpt
 mkdir -p logs
 sbatch --partition=gpu-highvram \
   --export=ALL,CONDA_ENV=base,COMPATIBILITY_CHECKPOINT=runs/spectrum_pilot_66855524/ranking_attempt_1/checkpoints/last.ckpt,COMPATIBILITY_REPORT=evaluation/full_validation_66855524/ranking.json \
-  train_compatibility.sh
+  training/train_compatibility.sh
 ```
 
 Use the new job number for logs:

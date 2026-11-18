@@ -5,7 +5,7 @@ from pathlib import Path
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-NEW_FILES = ('benchmark_opls.py', 'run_opls_benchmark.sh', 'OPLS_BENCHMARK.md',
+NEW_FILES = ('benchmark_opls.py', 'run_opls_benchmark.sh', 'docs/experiments/OPLS_BENCHMARK.md',
              'tests/test_opls_benchmark.py', 'docs/results/opls_pipeline_1807809.md')
 DEPENDENCIES = ('predict_opls.py', 'diffusion/model.py', 'diffusion/opls_bridge.py',
                 'diffusion/opls_backend.py', 'diffusion/opls_client.py',

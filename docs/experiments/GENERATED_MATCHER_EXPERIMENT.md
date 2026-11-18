@@ -54,7 +54,7 @@ processed data, ranking checkpoint and full-validation ranking report.
 cd ~/diffusion &&
 unzip -o unity_generated_matcher_update.zip &&
 mkdir -p logs &&
-sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base train_generated_matcher.sh
+sbatch --partition=gpu-highvram --export=ALL,CONDA_ENV=base training/train_generated_matcher.sh
 ```
 
 The output is `runs/generated_matcher_JOBID`. Logs are

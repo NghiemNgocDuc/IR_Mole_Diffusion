@@ -43,7 +43,7 @@ def valid_candidates(decoded, max_atoms=29):
 def _provenance(args, data, model, split_hash, ema_weights, checkpoint_hash):
     import selfies
     from rdkit import rdBase
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parents[1]
     return {
         "data_sha256": model.run_metadata["data_sha256"], "split_sha256": split_hash,
         "checkpoint_sha256": checkpoint_hash, "ema_weights": ema_weights,
@@ -60,7 +60,7 @@ def _provenance(args, data, model, split_hash, ema_weights, checkpoint_hash):
         "versions": {"torch": str(torch.__version__), "numpy": np.__version__,
                      "rdkit": rdBase.rdkitVersion, "selfies": selfies.__version__},
         "source_sha256": {name: file_sha256(root / name) for name in (
-            "evaluate_spectrum.py", "diffusion/spectrum_audit.py", "diffusion/spectrum.py",
+            "evaluation/evaluate_spectrum.py", "diffusion/spectrum_audit.py", "diffusion/spectrum.py",
             "diffusion/encoder.py", "diffusion/model.py", "diffusion/data.py")},
     }
 

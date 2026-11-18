@@ -27,6 +27,7 @@ predictions/
 logs/
 /*.zip
 /LigParGen-*.AppImage
+/tools/LigParGen-*.AppImage
 
 # Build products and OS metadata
 build/

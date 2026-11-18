@@ -3,7 +3,7 @@
 **Completed run 1389118:** the selected epoch improved assessment Top1 from
 63.60% to 63.66%, with a paired exploratory 95% interval of -0.35 to +0.44
 percentage points. This does not establish an improvement. Keep the existing
-decoder; no weights were promoted. See the [audited outcome](docs/results/residual_selector_1389118.md).
+decoder; no weights were promoted. See the [audited outcome](../results/residual_selector_1389118.md).
 The launch instructions below preserve the experiment protocol.
 
 The previous selectors fitted their repeated training comparisons but reduced

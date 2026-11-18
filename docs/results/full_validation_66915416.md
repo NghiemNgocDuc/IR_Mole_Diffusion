@@ -81,8 +81,8 @@ The code's historical `promising_pending_broader_validation` flag only requires
 positive Top1 and nondecreasing Top5; it does not check interval exclusion of
 zero. The guide now distinguishes that flag from the stricter review criterion.
 
-Launch instructions: [compatibility experiment](../../COMPATIBILITY_EXPERIMENT.md)
-and [upload quick start](../../START_COMPATIBILITY_RANKING.md).
+Launch instructions: [compatibility experiment](../experiments/COMPATIBILITY_EXPERIMENT.md)
+and [upload quick start](../experiments/START_COMPATIBILITY_RANKING.md).
 
 ## Verification and code changes
 

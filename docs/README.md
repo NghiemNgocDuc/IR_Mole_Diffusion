@@ -2,21 +2,21 @@
 
 ## Current workflow
 
-- [Matcher training-task audit](../MATCHER_TRAINING_TASK_AUDIT.md): next runnable diagnostic; compare original training groups with generated four-choice groups on the same training molecules.
+- [Matcher training-task audit](experiments/MATCHER_TRAINING_TASK_AUDIT.md): next runnable diagnostic; compare original training groups with generated four-choice groups on the same training molecules.
 - [Completed IR diagnostic and next decision](results/token_matcher_probe_1444546.md): verified spectrum dependence; difficult candidate comparisons remain the problem. Includes the proposed training-comparison study.
 - [Full-token matcher outcome](results/token_matcher_1426578.md): completed frozen/fine-tuned comparison; the small combined gain is inconclusive.
 - [Top1 research before the matcher trial](TOP1_RESEARCH_AND_NEXT_EXPERIMENT.md): paper/code review and the motivation for the now-completed experiment.
-- [Development-selected decoder corrections](../RESIDUAL_SELECTOR_EXPERIMENT.md): completed experiment; no reliable assessment improvement. Retain the existing decoder.
-- [Hard-negative selector pilot](../HARD_SELECTOR_EXPERIMENT.md): compare generated confusing alternatives with matched random negatives after the failed compatibility experiment.
-- [Accuracy update v2](../ACCURACY_UPDATE_V2.md): prepare decoding comparisons and training-only negative pairs before fine-tuning.
-- [Fine-tuning pilot](../FINETUNE_PILOT.md): run and compare the three controlled training variants, then review the results.
-- [Optional compatibility experiment](../COMPATIBILITY_EXPERIMENT.md): train a separate scorer for existing graph candidates.
-- [Interactive 3D viewer](../VIEWER_3D_UPDATE.md): rotate, zoom, and inspect saved conformers offline.
+- [Development-selected decoder corrections](experiments/RESIDUAL_SELECTOR_EXPERIMENT.md): completed experiment; no reliable assessment improvement. Retain the existing decoder.
+- [Hard-negative selector pilot](experiments/HARD_SELECTOR_EXPERIMENT.md): compare generated confusing alternatives with matched random negatives after the failed compatibility experiment.
+- [Accuracy update v2](guides/ACCURACY_UPDATE_V2.md): prepare decoding comparisons and training-only negative pairs before fine-tuning.
+- [Fine-tuning pilot](guides/FINETUNE_PILOT.md): run and compare the three controlled training variants, then review the results.
+- [Optional compatibility experiment](experiments/COMPATIBILITY_EXPERIMENT.md): train a separate scorer for existing graph candidates.
+- [Interactive 3D viewer](guides/VIEWER_3D_UPDATE.md): rotate, zoom, and inspect saved conformers offline.
 - [Project README](../README.md): environment setup and the complete training, evaluation, and prediction workflow.
 
-The root update guides remain at their existing paths because the Unity packaging
-scripts and earlier instructions refer to them. Older update guides describe
-individual releases; use the current workflow links above for the accuracy pilot.
+Update guides are grouped under `docs/guides/` and experiment protocols under
+`docs/experiments/`. Older guides describe individual releases; use the current
+workflow links above for the accuracy pilot.
 
 ## Results, data, and research
 
@@ -31,7 +31,7 @@ individual releases; use the current workflow links above for the accuracy pilot
 - [Research decisions](RESEARCH.md): model design and source references.
 - [Validation record](VALIDATION.md): implementation checks and diagnostic runs.
 - [Performance expectations](PERFORMANCE_EXPECTATIONS.md): workload considerations and how to measure runtime.
-- [Original repository audit](../REPO_AUDIT.md): the historical review of the supplied implementation.
+- [Original repository audit](guides/REPO_AUDIT.md): the historical review of the supplied implementation.
 
 Files in `docs/results/` preserve supplied run reports and selection records.
 Validation-subset graph identity, coordinate quality, and individual viewer

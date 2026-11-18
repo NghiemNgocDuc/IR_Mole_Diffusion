@@ -5,10 +5,10 @@ reuse your trained checkpoints and do not require retraining the coordinate mode
 
 | Task | Guide |
 | --- | --- |
-| Prepare the current accuracy experiments | [Accuracy update v2](ACCURACY_UPDATE_V2.md) |
-| Run or monitor the three-variant fine-tuning pilot | [Fine-tuning pilot](FINETUNE_PILOT.md) |
-| Rotate and inspect molecular predictions in 3D | [Interactive viewer](VIEWER_3D_UPDATE.md) |
-| Try the separate candidate scorer | [Compatibility experiment](COMPATIBILITY_EXPERIMENT.md) |
+| Prepare the current accuracy experiments | [Accuracy update v2](docs/guides/ACCURACY_UPDATE_V2.md) |
+| Run or monitor the three-variant fine-tuning pilot | [Fine-tuning pilot](docs/guides/FINETUNE_PILOT.md) |
+| Rotate and inspect molecular predictions in 3D | [Interactive viewer](docs/guides/VIEWER_3D_UPDATE.md) |
+| Try the separate candidate scorer | [Compatibility experiment](docs/experiments/COMPATIBILITY_EXPERIMENT.md) |
 
 See the [documentation and repository map](docs/README.md) for results, research,
 dataset audits, and the purpose of each directory. The setup instructions below
@@ -286,7 +286,7 @@ python scripts/package_unity.py --progress_only --output outputs/unity_progress_
 Let an active evaluation finish, then upload the ZIP into `~/diffusion` and
 run `unzip -o unity_progress_update.zip` there. Subsequent jobs use progress
 automatically; no dependency installation, retraining, or checkpoint transfer
-is needed. See [the update guide](EVALUATION_PROGRESS_UPDATE.md). Already running
+is needed. See [the update guide](docs/guides/EVALUATION_PROGRESS_UPDATE.md). Already running
 processes do not acquire the display from a source update.
 
 For comparison with the default prediction pathway's MMFF relaxation, evaluate

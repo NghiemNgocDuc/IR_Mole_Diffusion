@@ -66,4 +66,4 @@ Changing sources, settings, inputs or library versions requires new preparation 
 
 ## Research context
 
-[FIRMPO](https://arxiv.org/html/2608.16082v1) motivates studying model-generated alternatives and chemical feedback, but uses a different formulation with formula/spectral information. This pilot does not reproduce its method. The optional [compatibility experiment](COMPATIBILITY_EXPERIMENT.md) separately explores IR/molecule alignment with a frozen encoder and two projection networks; it does not calculate forward IR or guarantee a gain.
+[FIRMPO](https://arxiv.org/html/2608.16082v1) motivates studying model-generated alternatives and chemical feedback, but uses a different formulation with formula/spectral information. This pilot does not reproduce its method. The optional [compatibility experiment](../experiments/COMPATIBILITY_EXPERIMENT.md) separately explores IR/molecule alignment with a frozen encoder and two projection networks; it does not calculate forward IR or guarantee a gain.

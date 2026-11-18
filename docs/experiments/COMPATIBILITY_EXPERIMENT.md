@@ -2,7 +2,7 @@
 
 **2026-11-10 result:** The ranking-base experiment completed as job 1361218.
 Top1 fell from 64.02% to 54.23%, with unchanged Top5 of 89.26%. Retain the ranking
-model; this helper is not selected for use. See the [verified outcome and analysis](docs/results/compatibility_1361218.md).
+model; this helper is not selected for use. See The [verified outcome and analysis](../results/compatibility_1361218.md).
 The protocol below is retained to document the completed experiment.
 
 This separate experiment trains two small projection networks to associate IR features with molecular fingerprints. The original baseline EMA encoder stays frozen. Only training-split molecular labels enter the objective; duplicate canonical identities are treated as positives rather than incorrect alternatives.

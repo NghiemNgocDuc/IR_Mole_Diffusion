@@ -22,7 +22,7 @@ The main data and checkpoint files are present, but this folder is not ready for
 
 ### 1. The v2 model wrapper calls an incompatible denoiser API
 
-Locations: [diffusion_v2/model.py](diffusion_v2/model.py), [diffusion/denoiser.py](diffusion/denoiser.py).
+Locations: [diffusion_v2/model.py](../../diffusion_v2/model.py), [diffusion/denoiser.py](../../diffusion/denoiser.py).
 
 The v2 constructor passes `use_bond_graph` and `bond_emb_dim`; the shared denoiser accepts `graph_conditioning` instead. Training and sampling also pass `bond_adj`, while the denoiser expects `graph={"bond_types": ...}`.
 
@@ -39,7 +39,7 @@ Good news: the diffusion checkpoint's denoiser keys and tensor shapes exactly ma
 
 ### 2. The supplied encoder implementation omits trained checkpoint modules
 
-Location: [src_v2/models.py](src_v2/models.py).
+Location: `src_v2/models.py` (historical source name; not present in this repository).
 
 Instantiating its `Transformer` from the supplied encoder checkpoint's hyperparameters and comparing state dictionaries found **28 unexpected checkpoint keys**, belonging to `peak_self_attn` and `formula_prefix_proj`. The checkpoint enables `peak_self_attn=True` and `formula_prefix_to_decoder=True`, but the supplied class does not implement those components. `strict=False` can silently discard these trained weights.
 
@@ -47,7 +47,7 @@ The diffusion checkpoint also embeds encoder weights containing these modules. O
 
 ### 3. Diffusion checkpoint loading depends on paths absent here
 
-Locations: [diffusion_v2/model.py](diffusion_v2/model.py), [inference_v2.py](inference_v2.py).
+Locations: [diffusion_v2/model.py](../../diffusion_v2/model.py), [inference_v2.py](../../inference_v2.py).
 
 The diffusion checkpoint records this encoder source:
 
@@ -63,7 +63,7 @@ The diffusion checkpoint already contains 236 `pretrained.*` state entries. A po
 
 ### 4. Physics loss is not connected to the required graph targets
 
-Locations: [diffusion_v2/model.py](diffusion_v2/model.py), [diffusion/model.py](diffusion/model.py), [diffusion/physics.py](diffusion/physics.py).
+Locations: [diffusion_v2/model.py](../../diffusion_v2/model.py), [diffusion/model.py](../../diffusion/model.py), [diffusion/physics.py](../../diffusion/physics.py).
 
 Both wrappers call `self.physics_loss(coords, atom_types, mask)` without a graph. The current physics implementation requires explicit `bond_types` whenever any physics term is active. A direct call reproduced:
 
@@ -77,7 +77,7 @@ Checkpoint physics buffers also use the old `bond_mean`, `bond_std`, and `bond_m
 
 ### 5. The newer native workflow is only partially integrated
 
-Locations: [train_diffusion.py](train_diffusion.py), [evaluate_diffusion.py](evaluate_diffusion.py), [diffusion/model.py](diffusion/model.py), [diffusion/data.py](diffusion/data.py).
+Locations: [train_diffusion.py](../../train_diffusion.py), [evaluate_diffusion.py](../../evaluate_diffusion.py), [diffusion/model.py](../../diffusion/model.py), [diffusion/data.py](../../diffusion/data.py).
 
 - The trainer passes `chirality_weight`, `conditioning_mode`, `readout`, `graph_conditioning`, and optionally `encoder_spec`; `diffusion/model.py` does not accept these options. The `encoder_spec` constructor smoke check fails with `TypeError`.
 - The model still imports missing `src.models_with_formula_acc_v2` / `src.models_with_formula_acc`. Direct construction reproduces `ModuleNotFoundError: No module named 'src'`. The available package is `src_v2`.

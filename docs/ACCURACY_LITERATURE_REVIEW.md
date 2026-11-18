@@ -6,7 +6,7 @@ for the current evidence and recommendations. This file preserves the earlier
 research history; its old next-step instructions and baseline values are not the
 current outcome.
 
-**2026-11-06 implementation update:** [Accuracy update v2](../ACCURACY_UPDATE_V2.md)
+**2026-11-06 implementation update:** [Accuracy update v2](guides/ACCURACY_UPDATE_V2.md)
 adds a preparation-only decoding comparison, model-generated alternatives from
 training inputs, three matched-budget training arms, and a separate optional
 frozen-encoder compatibility scorer. These are controlled local experiments,
@@ -15,7 +15,7 @@ and 89.7% Top5 on the same 1,000 validation rows until new results are measured.
 
 **2026-11-05 update:** The [representative 1,000-row audit](results/stage1_baseline_66782537.md)
 now reports 64.0% Top1 and 89.7% Top5. Its 257 correct lower-ranked candidates
-motivate the [controlled CE versus ranking pilot](../FINETUNE_PILOT.md).
+motivate the [controlled CE versus ranking pilot](guides/FINETUNE_PILOT.md).
 This supersedes the earlier first-500 sample as the pilot baseline. No fine-tuning
 accuracy gain has been measured yet; the research discussion below records the
 earlier investigation.

@@ -3,7 +3,7 @@
 This is the next controlled experiment after the pooled-feature selectors failed.
 It is an adaptation of token-level cross-attention and joint alignment/matching,
 not a reproduction of Vib2Mol or a claim of improved accuracy. The research and
-measured bottlenecks are in [the research review](docs/TOP1_RESEARCH_AND_NEXT_EXPERIMENT.md).
+measured bottlenecks are in [the research review](../TOP1_RESEARCH_AND_NEXT_EXPERIMENT.md).
 
 ## Upload and start
 

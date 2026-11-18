@@ -3,7 +3,7 @@
 **Completed run 1361586 did not improve accuracy.** The hard selector scored
 26.59% Top1, the random control 33.76%, and the retained baseline 64.02% on the
 same full validation split. Both selectors reached 100% on their repeated training
-comparisons. See [the outcome review](docs/results/hard_selector_1361586.md).
+comparisons. See [the outcome review](../results/hard_selector_1361586.md).
 The instructions below preserve the experiment protocol; they are not a
 recommendation to rerun or promote these heads.
 

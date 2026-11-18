@@ -58,4 +58,4 @@ The original ranking order remains available. No weights are promoted
 automatically and the test split is not evaluated.
 
 See [the reviewed protocol](COMPATIBILITY_EXPERIMENT.md) and
-[the completed full-validation audit](docs/results/full_validation_66915416.md).
+[the completed full-validation audit](../results/full_validation_66915416.md).
